@@ -1,14 +1,18 @@
 ---
 layout: page
 title: About
+permalink: /about/
 ---
 
-Hello.
+This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
 
-My name is Qiang Zhu, i am pursuing my Ph.D. degree at the [Institution of Theoretical and computational Chemistry](http://itcc.nju.edu.cn/zh/) of [Nanjing University](https://www.nju.edu.cn/EN/), under the supervision of Prof. [Jing Ma](http://itcc.nju.edu.cn/majing/awards.html) and Prof. [Hao Dong](https://sites.google.com/site/donghaonj/).
+You can find the source code for Minima at GitHub:
+[jekyll][jekyll-organization] /
+[minima](https://github.com/jekyll/minima)
 
-Attached is my [CV](https://github.com/csu1505110121/csu1505110121.github.io/blob/master/CV_Qiang.pdf).
+You can find the source code for Jekyll at GitHub:
+[jekyll][jekyll-organization] /
+[jekyll](https://github.com/jekyll/jekyll)
 
 
-
-**Less is more..**
+[jekyll-organization]: https://github.com/jekyll
