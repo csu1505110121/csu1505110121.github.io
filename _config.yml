@@ -30,6 +30,7 @@ theme: minima
 plugins:
   - jekyll-feed
 
+baidu-analysis: 52e3043a5a08ab765e2ab043db2a2906
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
