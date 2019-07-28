@@ -2,7 +2,7 @@
 layout: post
 title:  "Hello World!"
 date:   2019-07-27 21:32:35 +0800
-categories: jekyll update
+categories: Test
 ---
 
 {% highlight python %}

@@ -2,7 +2,8 @@
 layout: post
 title:  "Configuration of a Computer Cluster"
 date:   2019-07-27 22:02 +0800
-categories: jekyll update
+categories: Linux
+tags: Network Configuration
 ---
 
 打开网络转发机制
