@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A Meeting at SongShan"
+title:  "A Meeting at SongShan Lake"
 date:   2019-08-01 10:40 +0800
 categories: Life
 tags: Conference
@@ -11,3 +11,4 @@ A group photo at the SongShan Lake Laboratory for Materials Science.
 <div align="center">
 <img src="{{site.url}}/assets/2019_songshan/meeting_at_songshan.jpeg" width = "600" height = "286" alt="Meeting @ SongShan"/>
  </div>
+
