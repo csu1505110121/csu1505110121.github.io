@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "A Meeting at SongShan"
+date:   2019-08-01 10:40 +0800
+categories: Life
+tags: Conference
+---
+
+
+
+
+
+![A Meeting at SongShan Lake.](../assets/poster_2019_songshan/meeting_at_songshan.jepg)
