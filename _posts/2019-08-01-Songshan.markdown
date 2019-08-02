@@ -11,4 +11,5 @@ A group photo at the SongShan Lake Laboratory for Materials Science.
 <div align="center">
 <img src="{{site.url}}/assets/2019_songshan/meeting_at_songshan.jpeg" width = "600" height = "286" alt="Meeting @ SongShan"/>
  </div>
+ （Qiang stood in the last row, the 5th person counted from left.）
 
