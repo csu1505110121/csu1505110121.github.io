@@ -5,9 +5,9 @@ date:   2019-08-01 10:40 +0800
 categories: Life
 tags: Conference
 ---
+>Theory and Computational Biology: From Molecular to System
 
-
-
-
-
-![A Meeting at SongShan Lake.](../assets/poster_2019_songshan/meeting_at_songshan.jepg)
+A group photo at the SongShan Lake Laboratory for Materials Science.
+<div align="center">
+<img src="{{site.url}}/assets/2019_songshan/meeting_at_songshan.jpeg" width = "600" height = "286" alt="Meeting @ SongShan"/>
+ </div>
