@@ -11,7 +11,7 @@ tags: Conference
 
 Photo on a boat on the Danube river.
 <div align="center">
-<img src="{{site.url}}/assets/2019_Serbia_Trip/Danube_River.jpeg" width = "403" height = "" alt="Danube_River"/>
+<img src="{{site.url}}/assets/2019_Serbia_Trip/Danube_River.jpeg" width = "300" height = "" alt="Danube_River"/>
  </div>
 
 and a superb dinner nearby the Danube river.
