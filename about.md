@@ -12,6 +12,10 @@ permalink: /about/
 > 几时重。
 > 自是人生长恨水长东。--《相见欢.林花谢了春红》
 
+<div align="center">
+<img src="{{site.url}}/assets/aboutMe.jpg" width = "" height = "" alt="About Me"/>
+ </div>
+
 Hello!
 
 My name is Qiang Zhu, i am pursuing my Ph.D. degree at the [Institution of Theoretical and Computational Chemistry (ITCC)](http://itcc.nju.edu.cn/zh/) of [Nanjing University](https://www.nju.edu.cn/EN/), under the supervision of Prof. [Jing Ma](http://itcc.nju.edu.cn/majing/awards.html) and Prof. [Hao Dong](https://sites.google.com/site/donghaonj/). 
