@@ -22,6 +22,10 @@ tags: Phd
 	- 现代量子化学研究进展 (可以把你平时的ppt整体下然后merge成一个整体，所以平时的ppt都要保存好哦！)
 	- 研究报告 (可以把你毕业论文的绪论部分修改下直接搬过来（这个是最偷懒的办法），当然还需要改一改，不要自己都看不过去)
 
+三个作业的封面列在下方：
+
+[文献翻译]({{site.url}}/assets/PhD_details/covers/professional_english.doc)/[现代量子化学进展]({{site.url}}/assets/PhD_details/covers/progress.doc)/[研究报告]({{site.url}}/assets/PhD_details/covers/research_report.doc) 
+
 2020 年的具体要求我列在这个文件里了，需要自取。
 - [2020 南京大学博士毕业具体及学位申请流程]({{site.url}}/assets/PhD_details/requirments/2020_NJU_PhD_details.pdf)
 - [2020 博士课程邮件模板]({{site.url}}/assets/PhD_details/requirments/2020_templet_emails.docx)
