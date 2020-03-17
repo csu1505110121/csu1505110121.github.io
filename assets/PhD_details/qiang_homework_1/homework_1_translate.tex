@@ -1,0 +1,293 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% This is a (brief) model paper using the achemso class
+%% The document class accepts keyval options, which should include
+%% the target journal and optionally the manuscript type.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[journal=,manuscript=artical,email=false]{achemso}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Place any additional packages needed here.  Only include packages
+%% which are essential, to avoid problems later.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{chemformula} % Formula subscripts using \ch{}
+\usepackage[T1]{fontenc} % Use modern font encodings
+\usepackage{ctex}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+%\usepackage{graphicx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% If issues arise when submitting your manuscript, you may want to
+%% un-comment the next line.  This provides information on the
+%% version of every file you have used.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\listfiles
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Place any additional macros here.  Please use \newcommand* where
+%% possible, and avoid layout-changing macros (which are not used
+%% when typesetting).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand*\mycommand[1]{\texttt{\emph{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Meta-data block
+%% ---------------
+%% Each author should be given as a separate \author command.
+%%
+%% Corresponding authors should have an e-mail given after the author
+%% name as an \email command. Phone and fax numbers can be given
+%% using \phone and \fax, respectively; this information is optional.
+%%
+%% The affiliation of authors is given after the authors; each
+%% \affiliation command applies to all preceding authors not already
+%% assigned an affiliation.
+%%
+%% The affiliation takes an option argument for the short name.  This
+%% will typically be something like "University of Somewhere".
+%%
+%% The \altaffiliation macro should be used for new address, etc.
+%% On the other hand, \alsoaffiliation is used on a per author basis
+%% when authors are associated with multiple institutions.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Zhi Yue}
+%\altaffiliation{A shared footnote}
+\author{Chenghan Li}
+%\altaffiliation{Current address: Some other place, Othert\"own,
+%Germany}
+\author{Gregory A. Voth}
+
+\author{Jessica M. J. Swansom}
+%\altaffiliation{A shared footnote}
+%\email{i.k.groupleader@unknown.uu}
+%\phone{+123 (0)123 4445556}
+%\fax{+123 (0)123 4445557}
+%\affiliation[Unknown University]
+%{Department of Chemistry, Unknown University, Unknown Town}
+%\alsoaffiliation[Second University]
+%{Department of Chemistry, Second University, Nearby Town}
+%\author{Susanne K. Laborator}
+%\email{s.k.laborator@bigpharma.co}
+%\affiliation[BigPharma]
+%{Lead Discovery, BigPharma, Big Town, USA}
+%\author{Kay T. Finally}
+%\affiliation[Unknown University]
+%{Department of Chemistry, Unknown University, Unknown Town}
+%\alsoaffiliation[Second University]
+%{Department of Chemistry, Second University, Nearby Town}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The document title should be given as usual. Some journals require
+%% a running title from the author: this should be supplied as an
+%% optional argument to \title.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[动态质子化显著影响类药分子的细胞膜渗透性]
+  {动态质子化显著影响类药分子的细胞膜渗透性}
+
+
+
+%\pagestyle{fancy}
+%\chead{Yue Z, Li C, Voth G A, et al. Dynamic Protonation Dramatically Affects the Membrane Permeability of Drug-like Molecules[J]. \textit{Journal of the American Chemical Society}, \textbf{2019}, 141(34): 13421-13433.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Some journals require a list of abbreviations or keywords to be
+%% supplied. These should be set up here, and will be printed after
+%% the title and author information, if needed.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\abbreviations{IR,NMR,UV}
+%\keywords{American Chemical Society, \LaTeX}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The manuscript does not need to include \maketitle, which is
+%% executed automatically.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+
+\thispagestyle{fancy}
+\fancyhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+%\cfoot{}
+\rfoot{}
+\fancyhead[L]{文献出处：Yue Z, Li C, Voth G A, et al. Dynamic Protonation Dramatically Affects the Membrane Permeability of Drug-like Molecules[J]. \textit{JACS}, \textbf{2019}, 141(34): 13421-13433.}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.7pt}
+
+
+%文献出处：Yue Z, Li C, Voth G A, et al. Dynamic Protonation Dramatically Affects the Membrane Permeability of Drug-like Molecules[J]. \textit{Journal of the American Chemical Society}, \textbf{2019}, 141(34): 13421-13433.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The "tocentry" environment can be used to create an entry for the
+%% graphical table of contents. It is given here as some journals
+%% require that it is printed as part of the abstract page. It will
+%% be automatically moved as appropriate.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{tocentry}
+%
+%Some journals require a graphical entry for the Table of Contents.
+%This should be laid out ``print ready'' so that the sizing of the
+%text is correct.
+%
+%Inside the \texttt{tocentry} environment, the font used is Helvetica
+%8\,pt, as required by \emph{Journal of the American Chemical
+%Society}.
+%
+%The surrounding frame is 9\,cm by 3.5\,cm, which is the maximum
+%permitted for  \emph{Journal of the American Chemical Society}
+%graphical table of content entries. The box will not resize if the
+%content is too big: instead it will overflow the edge of the box.
+%
+%This box and the associated title will always be printed on a
+%separate page at the end of the document.
+%
+%\end{tocentry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The abstract environment will automatically gobble the contents
+%% if an abstract is not used by the target journal.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+生物膜的渗透性（$P_m$）是药物吸收，分配和发展的至关重要并且非常关键的因素。尽管大多数药物在口服给药的过程中会改变其质子化状态，但是我们对这些带电后的药物的理解是有限的。典范模型假设只有中性分子才能进入并被动地渗透从而穿过细胞膜，但是越来越多的证据表明这些过程对于某些带电物种也很容易。但是，此类可离子化的渗透物是否会在膜表面动态的改变其带电状态或以带电形式渗透仍然是个谜。在原子水平上探测质子耦合渗透过程，我们在此应用连续恒定$pH$分子动力学与自由能采样一起研究弱碱普萘洛尔（PPL）的渗透，同时评估包含动态质子化对渗透性（$P_m$）的影响。模拟揭示了PPL会在磷脂尾部的界面处动态的去质子化变成中性，这一现象显著的影响着渗透自由能的图像，并且可以揭示传统的分子动力学模拟会高估固有的渗透率。我们证明了固定电荷状态模拟是这一问题的主要原因，并提出了一个修改后的模型，该模型可以更好地描述$pH$耦合的分配和渗透问题。我们的结果表明，质子状态的动态变化在可离子化分子（包括药物和类药物分子）的渗透中起关键作用，因此需要对标准图像进行修改。
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Start the main part of the manuscript here.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{引言}
+跨生物膜的渗透是实现生命必不可少的分隔和定位的障碍，通常是将药物有效输送到目标部位的先决条件。因此，渗透性（$Pm$）是临床前药物发现中评估的必不可少的一个药理特性。它通常是在体外进行测量，通过基于细胞的检测（Caco-2和MDCK）或平行人工膜通透性检测（PAMPA）。超过$60~\%$的人类药物包含至少一个可电离的基团，并根据微环境$pH$的不同而电离，其大小取决于电离常数（$pK_a$），影响其在体内的分布和可利用性进而影响生物反应。考虑到沿胃肠道的$pH$梯度相当大，这些可离子化化合物中的很大一部分在输送至目标位置时会在一个或另一个位置改变他们的质子化状态。因此，药物或类药物分子的滴定行为的认知对于预测和优化其药代动力学特性至关重要。$pH$配分假设指出，只有中性的可电离分子才能在亲脂膜上扩散。和Henderson−Hasselbalch方程相似，$pH$依赖的表观或者有效的渗透系数（$P^e_{m}$）（对于单价的碱而言）可以用如下的形式表示：
+\begin{equation}
+P^{e}_{m} = \frac{P^{0}_{m}}{1+10^{pK^{aq}_a}-pH}
+\end{equation}
+
+其中$pk^{aq}_a$是水溶液中的$pK_a$，$P^0_m$表示中性情况下的$P_m$，或者叫做固有的$P_m$。然而，越来越多的研究表明违反了$pH$配分假说。例如，已经表明，带电的季铵化合物能够渗透细胞膜。还报道了带电形式的可电离化合物也可以发生渗透，尽管其速率比中性形式慢得多。并且带电物种的丰度可以对总测得的$P_m$有重大的贡献。在细胞内，分子可以通过多种途径渗透（例如，细胞旁，跨细胞载体介导的和被动运输），使得难以明确评估带电物种的被动扩散的贡献。Palm等比较了两个$pK^{aq}_a$大致相同的弱碱的Caco-2的渗透，发现具有较大分子量的一个对带电形式的$P^e_m$较高，这表明跨细胞被动扩散是不可忽略的，因为较大的分子不会从细胞旁的渗透途径发生渗透。一些与$pH$分配假说相违背的现象在PAMPA和脂质体测定中也被观测到了，同时细胞旁和主动运输的途径也没有被观测到。Fischer等测量了12种季铵化合物的PAMPA的$P^e_m$，发现永久带电的分子可能具有较高的被动跨膜渗透性，这可能是由于电荷离域所致。Regev等测量了阿霉素（一种伯胺的$pK^{aq}$为9.7）脂质体的$P^e_m$，发现在高$pH$下$P^e_m$的增加显著小于等式 1的预测值，但偏差的起因尚不清楚。所有这些违规行为都暗示了等式1中假定的中性渗透物过于简单。
+
+$pH$分区的假设当然忽略了可电离的分子在进入前可能会在膜表面发生中和的可能性。这种可能将为上述违反$pH$分配假说提供明显的解释。然而，这一解释受到了几项结果的挑战，这些结果表明两亲分子以其带电形式迁移到膜中，并积累在脂质头基和甘油区域。结合的两亲物的可电离位处在水可及的头基区域，在此处它们通过与两性离子脂质头基形成表面离子对来稳定其离子化状态。（注意这里有趣的区别是，碱在膜中与带负电荷的磷酸盐缔合较低，而酸与离带正电荷的三甲基铵基团更靠近膜-水界面更近。）相比之下，在更深的位置观察到了中和的物质，这表明在渗透过程中确实在膜内部某处发生了滴定事件。自然而然会问两个问题：离子化的分子是在渗透到膜之前发生中和的吗？如果是的话，中和发生在膜的确切位置在哪里？要解决这些问题，需要深入了解原子级的渗透膜相互作用，这在实验中是不易获得的。
+
+分子动力学（MD）模拟可以谨慎地预测$P_m$并提供渗透的原子细节。因为Marrink和Berendsen的相关工作，分子动力学模拟在研究渗透率上已经是一种成熟的方法。根据$pH$分区的假设，大多数模拟是使用中和的渗透剂进行的，可从中计算出$P^0_m$。但是，使用固定的电离状态，无论是带电的还是中性的，都面临一些限制。首先，选择中性形式忽略了膜区分中提到的带电物质也可以穿膜。其次，它假定膜内的$pK_a$不受干扰，因此尽管在物理上预期有相当大的$pK_a$漂移，但在渗透过程中没有动态滴定的发生。在给定观察到的某些分子的位置依赖性电离状态下，通过比较该位置的水相$pH$和$pK_a$，沿着渗透途径在固定位置进行多种模拟，改变电离状态可能更为现实。膜内环境的$pK_a$可以通过Poisson-Boltzmann （PB）静电计算进行预测，例如PB求解器APBSmem。但是，这种方法在高度埋藏的可电离位点的$pK_a$预测中通常会带来很大的误差。此外，基于静态结构的计算会遭受质子化和构象平衡之间耦合的损失，这已证明在滴定耦合过程中必不可少。或者，膜内的pKa可以从两种电离状态的渗透自由能导出。然而，该方法在计算上是昂贵的，并且不能提供响应于变化的膜环境的质子化的动态图像。因此，对可电离分子的膜渗透性进行更好的建模需要一种工具，该工具能够响应微环境的变化而实现动态质子化。
+
+过去十年见证了恒定pH分子动力学（pHMD）的发展，这是一类确定构象动力学过程中可电离位点电荷状态的方法。根据如何表示和采集电荷状态，pHMD方法可分为离散pHMD（DpHMD）和连续pHMD（CpHMD）。在DpHMD中，使用Monte Carlo方法定期中断标准的MD模拟以更新电荷状态，该方法将根据Metropolis标准确定是否应接受或拒绝随机生成的新电荷状态。MD模拟会以新的电荷状态继续进行。用于评估滴定能量的溶剂化模型中，不同的DpHMD公式大部分不同。与DpHMD不同，CpHMD通过在扩展的哈密顿量基础上增加滴定度，从而在MD模拟中使电荷状态发生波动。在基于$\lambda$动力学方法进行自由能计算的CpHMD中，每个可电离的位置都分配了一个$\lambda$，其范围为0（质子化形式）和1（去质子形式），并与空间坐标同时传播。pHMD在多个$pH$耦合的体系中都取得了成功。Machuqueiro实验室使用DpHMD表征了膜插入过程中膜表面上可电离氨基酸的$pK_a$值和pHLIP肽中的$pK_a$的位移（$\Delta pK_a$）。Roux实验室研究了五肽AADAA在PO​​PC（1-棕榈酰基-2-油酰基-sn-甘油-3-磷酸胆碱）膜上的转运过程，发现中心天冬氨酸的$pK_a$在膜中心偏移到了$7.3$。Brooks实验室首先使用CpHMD对溶剂和膜进行了隐式描述，以研究视紫红质活化中质子化相关的结构重排。后来，Brooks实验室使用显式溶剂的CpHMD研究了跨膜螺旋中可滴定氨基酸的质子平衡，并发现在膜内，这些可滴定残基的更加倾向于变成中性。最近，Shen实验室开发了混合溶剂的CpHMD，它结合了用于构象采样的显式溶剂和膜的准确性以及用于计算可电离位点的溶剂化自由能或$pK_a$值的隐式溶剂模型的高效性。此方法已在各种$pH$耦合系统中得到验证，例如脂肪酸以及多糖的组装和相变，多糖，抑制剂-酶结合和蛋白质折叠。因为对于膜的描述包含在隐式溶剂模型中，杂合溶剂CpHMD能够提供$Na^{+} / H^{+}$反向转运蛋白NhaA的质子驱动活化，A型M2流感的质子通道和多药外排泵的机制的见解。
+
+\begin{figure}[h]
+\centering
+%\includegraphics[width=0.8\textwidth,natwidth=500,natheight=368]{figures/figure1.jpg}
+\includegraphics[width=0.6\textwidth]{figures/fig1.png}
+\caption{PPL的结构和渗透的热力学。（A）PPL的化学结构是。其中PPL可以离子化的氨基是用蓝色的球显示出来，实验中测得的$pK^{aq}_a$显示在下方。（B）与膜中心的距离$\Delta ZCOM$相关的自由能PMF。其定义为PPL重原子的质心（COM）与细胞膜POPC中心的质心（COM）间的距离在Z轴上的投影。在水相中，带电（PPL$^{+}$）和CpHMD（在pH $7$）设置为零，而在pH 7下，中性（PPL$^{0}$）PMF因水相中的去质子自由能而上移（$3.55~kcal / mol$）。误差线表示与块分析的标准差，为清楚起见，每$3$ \AA 显示一次（详细信息请参见图S1）。一个示意性的POPC分子在下面对齐，其不同组分用不同的颜色表示，并且根据图2B沿着膜法线绘制。}
+\label{fig:fig1}
+\end{figure}
+
+受这些成功的案例的启发，我们结合杂化溶剂的CpHMD的方法和伞型采样一起来研究阳离子两亲性普萘洛尔（PPL，图1A）从$\beta$-阻滞剂家族中渗透穿过POPC双层膜的过程。$\beta$受体阻断剂是一类主要用于治疗心血管疾病的药物。作为$\beta$受体阻滞剂的原型，普萘洛尔被世界卫生组织列为卫生系统中所需的最有效，最安全的药物之一。选择POPC脂质是因为它们在脂质体荧光测定中用于确定$P_m$。脂质体$P_m$可测量被动渗透的速率，因此可直接与基于MD的$P_m$进行比较。我们尝试着回答下面的问题：（1）PPL如何根据渗透过程中变化的环境调整其电离状态；（2）PPL的动态质子化过程是如何影响其渗透率的？我们发现PPL以带电形式进入POPC双层，但在脂质尾部界面发生中和，然后以中性形式渗透。在MD自由能采样模拟中包括动态质子化，不仅可以确定其渗透途径，而且还可以非常高精度地预测$P_m$（约为实验值的1-3倍）。因此，我们提出了一个修正的$pH$分配模型，以更好地描述电离耦合的渗透过程。本工作的主要的亮点在于从原子层面上给出了膜渗透过程的见解，并且该方法可以用于其他重要的离子耦合的渗透现象。
+
+\section{结果和讨论}
+\subsubsection{动态质子化描绘了渗透途径}
+我们首先研究了动态滴定对PPL渗透的热力学影响。图1B显示了在带电形式（PPL$^{+}$）和中性形式（PPL$^0$）以及在CpHMD下，平均力势（PMF)，即自由能曲线，其是关于双层中心$\Delta ZCOM$的距离的函数。当靠近双分子层中心时，PPL$^{+}$的能垒高达$\sim 12~kcal/mol$，和之前的理论工作的结论相一致。PPL$^{0}$在靠近POPC头基附近的时候能垒大约$\sim 3 ~kcal/mol$，在头基附近（$\Delta ZCOM$等于15-20\AA ）体系的电荷和密度已经达到了最大。PPL$^+$和PPL$^0$在$\Delta ZCOM = 12$\AA 处相交。和之前的计算研究相一致，这表明最低的自由能的渗透路径，即以PPL$^{+}$的形式进入磷脂层，但以PPL$^{0}$的形式渗透通过磷脂层。在使用CpHMD的情况下，PPL可以改变它的带电状态来适应它的微环境。在渗透方向上，CpHMD的PMF首先与PPL$^{+}$一致，直到$\Delta ZCOM$为$\sim 12$\AA，然后在统计误差内与PPL$^{0}$的PMF保持一致。换句话说，CpHMD重现了组合的固定电离态PMF的最低自由能路径，这是未经严格验证的常用方法。值得注意的是，CpHMD描绘路径只花费了一半的计算成本。
+
+\subsubsection{PPL在POPC磷脂层的疏水边界处发生中和}
+接下来，我们检查了渗透过程中PPL电荷状态的变化。尽管作为带电的物种绑定到了生物膜中，有证据显示PPL反式脂质体的配分增加了内部的$pH$值，表明了以中性形式进行渗透并在脂质体内发生质子化。为了验证这一点，我们在图2A中将自由能表面（FES）绘制为$\Delta ZCOM$和PPL的滴定坐​​标（$\lambda ^{PPL}$）的函数。$\lambda ^{PPL}$表示的是PPL的质子化程度（$\lambda=0$表示PPL$^{+}$，$\lambda=1$表示PPL$^{0}$）。系统的各个组成部分的分布概率是根据散射密度分布模型计算得出的，并显示在图2B中。图2A和B表示PPL$^{+}$从水一直存在到脂质的羰基和甘油基（$\Delta ZCOM\approx 16.5$\AA ），但脂质烃尾部内部存在中性PPL$^0$（$\Delta ZCOM \le 10.5$\AA ），这一结果和实验（在生理$pH$值附近的两亲物以其带电形式聚集在脂质头基和甘油区域，但一旦它们迁移到更深的位置则变为中性）以及最低能量渗透路径一致（图1B）。值得注意的是，PPL滴定度（$\lambda ^{PPL}$从0变为1）在$\Delta ZCOM$范围为$10.5\sim 16.5$\AA 之间，其中磷脂层从羰基和甘油基（CG）过渡到烃尾（HC）。也就是说，PPL在磷脂层的疏水性边界（图2B中的$D_C$为$14.6$\AA ）而非磷脂层的表面。这一发现尽管和“药物的电中性都是发生在膜水界面处（图2B中的$D_B/2=20.7$\AA ）”的常识相悖，但是也不是特别的令人惊讶。
+
+\begin{figure}[h]
+\centering
+%\includegraphics[width=0.8\textwidth,natwidth=500,natheight=368]{figures/figure1.jpg}
+\includegraphics[width=0.7\textwidth]{figures/fig2.png}
+\caption{PPL的质子化状态随着渗透过程中的变化。（A）自由能表面（FES）与插入深度（$\Delta ZCOM$ 以及pH值为$7$时的PPL滴定坐标（$\lambda$PPL）之间的关系，等高线间的间距为$1~k_BT$。垂直的白虚线表示PPL滴定的起点和终点（$\lambda$PPL从0即PPL$^{+}$变为1，即PPL$​^{​0}$）。从块分析得到的平均标准偏差为$0.3~k_BT$。POPC双层膜组分的密度分布模型的体积概率分布。组件化沿用Kucerka等人的：水（棕色）、磷酸和胆碱的\ch{CH2CH2N}（红色）、胆碱的3$\times$\ch{CH3}部分（\ch{CholCH3}，绿色）、羰基和甘油基（CG，黑色）、次甲基（ \ch{CH}，青色），亚甲基（\ch{CH2}，蓝色），甲基（\ch{CH3}，品红色）和总烃尾（HC，橙色）。数据是在PPL的$\Delta ZCOM= 13.5$\AA 且pH值为$7$的情况下从伞式采样中收集的。垂直的紫色和深绿色的点划线分别标记疏水边界（$D_C$）和双层表面（$D_B / 2$）。背景灰色框突出显示了滴定区域（下同）。示意性的POPC分子沿着双层法线在中心映射，相应的组件具有相应的颜色。（C）PPL的$\Delta pK_a$和$\Delta ZCOM$的关系图。黑线由图1B中的PMF计算得出，误差线由误差传播计算得出。红色圆圈代表根据CpHMD计算得出的$pK_a$值，误差线由$3$次独立运行得出。（D）PPL的水合作用数，以PPL滴定氮（图1A）的$3.5$\AA 以内的水氧原子数作为$\Delta ZCOM$的函数。误差线表示与块的标准偏差
+为了清晰起见，每$3$\AA 显示一次。}
+\label{fig:fig2}
+\end{figure}
+
+从实验可以推断出，PPL也以相同的方式与膜结合。在我们的模拟中，PPL在POPC磷脂层中的分布，其萘部分位于羰基和甘油区域附近，胺基与磷酸根离子配对。这种划分模式大约出现在疏水边界（$D_C$）和双层表面（$D_B / 2$）之间，这与实验相符，并为表面离子对模型提供了支持。此外，由于水很难进入到图2B-D中的区域，与磷脂层的羰基和甘油基团结合的两亲分子很可能在那里发生滴定。实际上，Boulanger等人使用NMR研究了两种局麻剂（碱）与卵磷脂囊泡的$pH$依赖性相互作用。他们发现，在低$pH$值下的离子形式优选结合在膜表面附近，而在高$pH$值下的中性形式则强烈结合在更深的位置。
+这表明两亲分子可以响应$pH$引起的变化的电离状态，调节其在膜内的位置（上下移动），从而导致“ $pH$活塞假说”。实际上，这项工作揭示的与位置有关的电离状态与Boulanger等人的发现以及先前的CpHMD结果相符，支持“$pH$活塞假说”。
+
+从PPL$^{+}$和PPL$^{0}$的渗透的自由能曲线（图1B），可以使用热力学循环计算位置依赖的$pK_a$值。如图2C所示，PPL的$pK_a$从水中的$9.5$平稳降低到磷脂层中心的$\sim 1$。这一结论也是合理的，因为在膜内是的类似于PPL的碱性分子带电是能量不利的。其$pK_a$在$\Delta ZCOM \approx 12$\AA 处达到了$7$，这意味着与POPC结合在一起的PPL会在$pH$等于7处脱掉质子，这和图2A的结论也是一致的。使用Hill方程，我们还从具有膜功能的混合溶剂CpHMD与基于$pH$的复制交换（$pH$-REX）协议相结合计算了$pK_a$值，这已被证明可以预测$pK_a$值，具有较高的准确性和更快的收敛性。与基于自由能算出的$pK_a$一致，基于CpHMD得到的$pK_a$随着渗透的深入，在$\Delta ZCOM \approx 14$\AA 处达到了$7$。这两种方法计算得到的$pK_a$在$\Delta ZCOM \le 15$\AA 处吻合的非常好。在$15$\AA 以下，CpHMD的$pK_a$值降到了一个更低的值，但当$\Delta ZCOM \le 10$\AA 时，他们到达了一个平台。PMF计算得到的$pK_a$中不存在的第二个平台，其对应着双层的碳氢化合物尾部区域（图2B），此时的$pK_a$为$2.5\sim 3$。$pK_a$的降低发生在$\Delta ZCOM$范围约$10\sim 19.5$\AA，与图2A所示的滴定区域一致。此外，根据$pH$-REX CpHMD模拟计算得出的Hill系数在双层内部在$0.7\sim 0.8$的范围内，这表明了滴定中的反协同性。
+
+可以从分配系数（$\log P$）推断出膜内部的$pK_a$。有报道称，PPL的$pK_a$值较基于磷脂的脂质体的$\log P$的$pK^{aq}_a$会下降$0.5\sim 1.0$个$pH$单位。使用共溶剂法计算甲醇/水的混合物得到了相同的$\Delta pK_a$，因为水/甲醇混合物的介电常数和磷脂的头基部分类似。上述讨论的涉及到PPL膜配分模式的PPL-POPC相互作用在$\Delta ZCOM$等于$14\sim 16$\AA 范围内变得最为明显。在这个区域预测得到的$\Delta pK_a$等于$1\sim 2$个$pH$单位，计算得到的$pH$值较实验值要高一个$pH$。这可以归因与在我们的模拟中没有考虑离子效应，因为离子的存在会增强带电物种的配分，这一现象是通过减弱其磷脂层表面上静电排斥，因而计算得到的$pK_a$更高。如表S2所示，当离子强度从$0.23$降至$0.15~M$时，$\Delta pK_a$增加约$0.5 pH$单位。当离子强度衰减到$0$时，$\Delta pK_a$会进一步的增加。值得注意的是，表S2中列出的某些膜是阴离子膜，与电荷呈电中性的脂质相比，其会增加PPL$^{+}$的分配并导致$\Delta pK_a$降低。辛醇的$\log P$值也经常报告。尽管鉴于辛醇/水混合物形成氢键的能力，其比双层内部的疏水性内部更好，但烃链可形成介电常数与双层内部相似的溶剂不可及的区域。因此，我们认为辛醇$\log P$值可以提供有关烃尾部区域入口处（$\Delta ZCOM \approx 7\sim 14$\AA ）渗透物$pK_a$的一些见解。在$0.15 M$背景离子强度下，辛醇$\Delta pK_a$被测量为约$3$个$pH$单位，对于弱碱在临界离子强度下，辛醇$\Delta pK_a$可能会进一步增加约$1.5$个$pH$单位。然后，我们预计$\Delta pK_a$约为$4.5$个$pH$单位，该值落在该区域内计算出的$\Delta pK_a$值应该在的范围内。总的来说，预测的$\Delta pK_a$值与实验一致，这说明了我们计算的可靠性。
+
+我们现在考虑两种方法计算得到的$\Delta pK_a$的差异。与PMF方法相比，CpHMD预测在$\Delta ZCOM$范围为$10\sim 14$\AA 时，较大的$\Delta pK_a$值（图2C）。由于该区域中溶剂的可及性有限（图2B，D），因此在“开放”状态和“封闭”状态之间存在平衡，每个状态都耦合到一个单独的质子化平衡上。同样，图2C中计算出的$pK_a$值是包含两个构象的微观$pK_a$值的宏观值。由于混合溶剂CpHMD的GB模型无法捕获掩埋位点周围离散水分子的影响，因此闭合状态$pK_a$的误差可能不可忽略。已经表明，埋藏的赖氨酸的闭合状态的$pK_a$可能被低估约$1.5$个$pH$单位，从而导致高估了相同数量的$\Delta pK_a$。考虑这一点，CpHMD的$pK_a$值与脂质头基，羰基和甘油区域中的PMF计算得到的$\Delta pK_a$值非常吻合。在没有水的碳氢化合物尾部区域中，偏差变得更加明显。在CpHMD方面，由于GB模型无法准确描述去溶剂化作用，对于深埋的滴定部位$\Delta pK_a$会被高估。这一系统误差不会随着模拟时长的增加而有所改善。在自由能方面，PPL${^+}$PMF中的误差在双层中心附近最大（图1B），这可能是由于水缺陷（图2D）造成的，并将不确定性传播到最终的$\Delta pK_a$值中（图2C）。尽管长时间的模拟可以减轻这种误差，但是在当前的模拟长度内，我们已经在该区域的两组$\Delta pK_a$之间实现了定性的一致性。我们注意到，与伞型采样方法相比，CpHMD对计算的要求要低得多（每个副本的$pK_a$值收敛在$3~ns$之内），因此是预测膜$pK_a$值的更合适的工具。
+
+为了更好地了解POPC磷脂层内部PPL脱质子化的原因，我们通过计算水合数来量化其水合程度。其定义为PPL的铵根离子（图1A）在$3.5$\AA（第一个溶剂化壳）内的水的氧原子数，它是$\Delta ZCOM$（图2D）的函数。类似于电荷状态的变化（图2A），在进入到磷脂层之前，CpHMD得到的水合曲线与PPL$^{+}$的一致，在滴定区内减少，最终与磷脂层中心附近的PPL$^{0}$的一致。这以结果表明，$pK_a$的减少是由于水合数的减少造成的。为了验证这一点，我们在$\Delta ZCOM= 13.5$\AA 的伞型采样的窗口（CpHMD $pK_a$降至约$7$的滴定区域的中心（图2A））中研究了$\lambda ^{PPL}$和PPL水合数之间的相关性。如图S6A所示，当PPL脱水时（蓝色条形图），$\lambda ^{PPL}$通常采样值接近1（PPL$^0$），但是当第一个溶剂化壳中有两个或更多水分子时，$\lambda ^{PPL}$值接近0（PPL$^{+}$）（红色条）。这种反相关性（溶剂化程度的降低有利于质子的释放）也反映在希尔系数（$0.7\sim 0.8$）中。有趣的是，如果周围只有一个水分子，则PPL$^{0}$和PPL$^{+}$会均等地进行采样（棕条），预示着要发生滴定。Bonhenry等人报道了类似的发现，他通过构建$\Delta ZCOM$的函数和水合作用的2D-PMF，研究了赖氨酸类似物通过POPC磷脂层的渗透过程，发现电荷状态与水合数紧密相关。这些结果表明膜内的中和反应与去溶剂化过程有关。
+
+随之而来的一个问题是：质子滴定PPL$^{+}$后质子会去哪里？在没有可滴定的脂质头基的情况下，明显的受体是水。但是水是否也埋在膜中，还是质子会扩散进体相？图2D中显示的水合数仅能量化紧邻PPL铵根离子的“溶剂化”水分子的数量，不足以衡量膜内的水分布或其与体相水。因此我们沿着其渗透路径的方向上数水的个数（$N_{water}$）。其定义为在以膜法线为中心，$6.5$\AA 为半径（PPL铵根离子的第二个溶剂化壳）内$1$\AA 中的水的氧原子个数。图S6C表明水分子始终存在于疏水边界（$D_C$）之上，偶尔会低于$D_C$。通过累积添加$N_{water}$，我们发现总会有一个水分子稍微穿透POPC尾部（$D_C$下方$4$\AA ），而在$D_C$上方，累积的$N_{water}$迅速增加（图S6D）。这些结果表明，有大量的水分子沿渗透路径分布，从而使质子从PPL$^{+}$传递到体相水中去（图S6B）。当然，可滴定的脂质头基可能是质子的驻留的中间态位置。这样的中间体会影响质子转运到质子的速率，但不会影响PPL的$pK_a$，除非它们足够接近并能够改变带电/中性药物的相对稳定性，这中扰动往往是CpHMD能够观察到的。在模拟中，我们都没有包括头基的影响。
+此外，基于两个磷脂层小叶的渗透曲线是对称的假设，我们的结果表明在相反的小叶中存在另一个滴定区域（$\Delta ZCOM$从$-16.5$到$-10.5$\AA ），其中PPL$^{0}$可以通过来自另一侧的体相水中的质子再质子化成PPL$^{+}$，这与实验上观测到的PPL渗透增加了脂质体内$pH$的现象一致。
+
+\subsubsection{PPL以“三重翻转”的方式渗透}
+随后，我们在分子尺度上研究了PPL在渗透过程中的构象动力学。为了描述PPL较细胞膜的取向，我们定义了序参数$\theta$，该角度定义的是刚性PPL主轴之间
+萘部分（$\vec{r}_{naph}$）和磷脂层主轴（$\vec{r}_Z$）之间的角度（图3A）。
+
+\begin{figure}[h]
+\centering
+%\includegraphics[width=0.8\textwidth,natwidth=500,natheight=368]{figures/figure1.jpg}
+\includegraphics[width=0.7\textwidth]{figures/fig3.png}
+\caption{PPL在渗透过程中的构象的变化。（A）用来表征PPL构象变化的变量。角度$\theta$是角度
+与PPL萘部分的主轴（$\vec{r}_{naph}$）和萘之间双层法向（$\vec{r}_Z$），角度$\phi$是向量$\vec{r}_{naph}$与向量$\vec{r}_{O_1-N_1}$间的夹角。$d_{O1-N1}$是$O_1$和$N_1$之间的距离。（B）FES是$\Delta ZCOM$和$\theta$的函数。等高线间的距离显示为$0.5~k_BT$。垂直的白色虚线标记了PPL中与$\vec{r}_Z$对齐后的萘部分。从块分析得到的平均标准偏差是$0.3~k_BT$。（C）以$\phi$和$d_{O_1-N_1}$为函数的FES。等高线间的距离显示为$0.5~k_BT$。显示了伸展，扭曲和折叠状态的代表性结构。在pH 等于$7$时从所有伞型采样窗口收集的数据。从块分析得到的平均标准偏差是$0.1~k_BT$。（D）E（橙色），T（红色）和C（蓝色）状态的占用率是$\Delta ZCOM$的函数。 }
+\label{fig:fig3}
+\end{figure}
+
+FES是$\Delta ZCOM$和$\theta$的函数（图3B）表明萘部分采用一个取向平行于膜表面（$\theta \approx 90 ^{\circ}$）并处在碳氢化合物尾部区域（$\Delta ZCOM \ge 14.5$\AA ）。在$\Delta ZCOM$范围为$5.5\sim 14.5$\AA，萘部分更倾向于与$\vec{r}_Z$平行（$\theta$约为$30^{\circ}$）。这一结果和Badaoui等人使用当家的取向反应坐标得到的结果是一致的。该区域是POPC尾部的顺式双键所在的位置（图2B中的CH），并且萘部分与CH的接触最大化（图S7）。使用NMR可以观察到相同的相互作用。因为在$\Delta ZCOM \le 5.5$\AA 处，极小点的范围较为广泛，在取向上并没有什么倾向。此外，当PPL位于双层中心附近时，脂族链可以保留在萘部分的上方或下方，但如果PPL移近水，则脂族链则倾向于上方的构象（图S8）。给定细胞膜的对称性，在整个细胞膜的的背景下，这些结果共同表明每个双层小叶中脂质CH区域周围的萘部分发生一次翻转，双层中心附近的脂肪族链发生翻转（图S9）。与我们先前工作中报道的“三重翻转”机制一致。但是，渗透PMF作为$\Delta ZCOM$的函数的精度可能会受到渗透方向上隐性的能垒的影响，这个问题可以通过添加取向的集体变量来解决。但是，由于与PPL取向相关的自由能垒很小（$ < 1 k_BT$，图3B），因此单独使用$\Delta ZCOM$不会造成显著的误差。
+
+PPL构象可以用另外两个序参数来表征：$\phi$和$d_{O1-N1}$（图3A）。$\phi$是PPL脂族链与萘部分之间的夹角，用于量化渗透方向。$d_{O1-N1}$是两个原子$O1$和$N1$之间的距离，用来描述脂肪链的伸展情况。$\phi$和$d_{O1-N1}$定义的二维势能面揭示了3个局域极小点（图3C）。我们把这3个态称作伸展态（extended，\textbf{E}），扭曲态（twisted，\textbf{T}）和闭合态（collapsed，\textbf{C}）。在\textbf{E}态下，$\phi$集中在$65~^{\circ}$，$d_{O1-N1}$等于$5$\AA，PPL的脂肪链的二面角处在反式构象，从而导致整个构象处于一个伸展的状态。\textbf{T}态与\textbf{E}被$2~kcal/mol$的能垒分开，并且\textbf{T}的$\phi = 95 ^{\circ}$，$d_{O1-N1}=4.3$\AA。和\textbf{E}态相比，\textbf{T}态有一个扭转的烷烃链。脂肪族链向萘环弯曲的构型对应于\textbf{C}状态，该状态与\textbf{T}状态之间通过$3~kcal / mol$势垒隔开，并以$\phi = 110 ^{\circ}$和$d_{O1-N1}= 2.8$\AA 为中心。这三个状态的布局显示了依赖其是$\Delta ZCOM$依赖的（图3D）。\textbf{T}状态（图3D，红线）在水中占主导地位，大约是\textbf{C}状态的$2$倍（图3D，蓝线）。
+在PPL进入磷脂层并质子化后，\textbf{T}和\textbf{C}状态的种群分别开始减少和增加。在膜中心，\textbf{C}态较\textbf{T}态更加的有利。\textbf{E}态，尽管较其他两个态的采样都很少，但是在膜中心布局的更多。
+
+\subsubsection{动态的质子化显著地影响膜的渗透率}
+最后，我们研究了包括质子动力学对$P_m$预测的影响。$P_m$值是根据渗透性PMF的溶解度-扩散模型计算的，并计算了局部扩散率$D$。我们注意到，总体而言，PPL$^{+}$和PPL$^{0}$的D值没有显着差异（图S11）。但是由于\textbf{C}状态布局的增加，磷脂层中心PPL$^{0}$的扩散度是PPL$^{+}$的两倍（图3D）。由于存在较大的能垒，PPL$^{+}$的$P_m$（$−7.38$，表S3）比PPL$^{0}$的$P_m$（$−2.50$）小约$30000$倍，表明PPL的质子化强烈不利于渗透，同样去质子化很容易地进行。我们得到的结果和其他的计算结果以及$pH$依赖的PAMPA计算得到的$P_m$相一致（图4B）。和PPL$^{0}$进行比较，CpHMD在$pH=7$时预测得到的$P_m$较之要小$60 ~\%$（−2.92，图4A中的洋红色菱形）。因为PPL$^{0}$低估了双层进入的渗透屏障（相对于其整体稳定性）（图1B）。由于被动扩散，脂质体荧光测定法得到的$P_m$（图4A，橙色$\blacksquare$ ）提供了对$P_m$的良好的实验测量。CpHMD得到的$P_m$（$-2.92$）较Eyer等人报道的$P_m$（$-3.50 对数标度$，表S3）大$2.8$倍，较更大的磷脂测得的$P_m$（$-3.16$）大$0.74$倍。和实验测得的数值的偏差主要来源以下两点：（1）实验是在$pH=6$下测到的$P_m$，但是CpHMD是在$pH=7$下测得的；（2）由于潜在的偏置势，加速了CpHMD中的滴定动力学，从而有效地消除了水合滴定的自由能垒。换句话说，CpHMD测定的$P_m$是一个极限值，是在渗透物渗透时发生滴定的那么一瞬间，当磷脂的半径足够大（$20~\mu m或者更大$）的时候，使用这种方法通常是可行的。因此，迄今为止用最大脂质体测定的$P_m$（在$239~nm$脂质体半径下测得的$P_m$为-3.16）接近此极限，并且在能够反映大多数生物膜的更大脂质体中，预期其$P_m$会更接近我们的计算值（$-2.92$）。
+
+\begin{figure}[h]
+\centering
+%\includegraphics[width=0.8\textwidth,natwidth=500,natheight=368]{figures/figure1.jpg}
+\includegraphics[width=0.7\textwidth]{figures/fig4.png}
+\caption{PPL $pH$依赖的渗透系数$P_m$。（A）杂化方法计算得到$\bullet$的和实验测得$\blacksquare$的$P_m$间的比较。红色实线是“混合”的$P_m$与方程式2的最佳拟合。棕色的实线是从等式1预测得到的。（B）实验中PAMPA得到的$P_m$再评估。红色实线是等式S10拟合得来的。虚线表示针对水边界层校正的$P^{e}_{m}$（基于等式1的褐色和基于等式2的红色。}
+\label{fig:fig4}
+\end{figure}
+
+
+沿着PMF的最低自由能路径（图1B），我们根据PPL$^{+}$和PPL$^{0}$的自由能计算了$P_m$。这一“杂化的”$P_m$在$pH=7$下计算得到的值$-2.92$和CpHMD预测的值相一致，同时在$pH=6$得到的值$-3.37$和脂质体的$P_m$一致（表S3）。因此，我们能够构建$pH$依赖的$P^e_m$曲线（图4A，$\bullet$），并且和实验中测得的定性地一致（图4B，$\bigcirc$）。换句话说，$P^e_m$在低$pH$值时会增加，在高$pH$值时会达到平稳，从而形成双曲线形状。需要注意的是，PAMPA计算得到的$P^e_m$包括水溶液边界的贡献。$P^{ABL}_m$在脂质体方法和模拟中不存在，因此其计算得到的$P_m$值可直接比较。计算得出的$P^e_m$值无法满足方程式1（图4A，棕色线），这表明其违反了$pH$配分假设。但是，通过考虑希尔系数$n$同时用有效$pK_a$（$pK^e_a$）来替代$pK^{aq}_e$，我们得到如下的方程：
+\begin{equation}
+P^e_{m} = \frac{P^0_m}{1+10^{n(pK^e_a-pH)}}
+\end{equation}
+
+$n=0.61$和$pK^e_a=7.35$时拟合的曲线如图4A中的红线所示。正如这项工作所揭示的那样，因为PPL$^{+}$在疏水性边界而非磷脂层表面去质子化（图2B），PPL$^{0}$导致$P^e_m$低估了“有效” PPL$^0$的量。因此，当考虑有效的PPL$^{0}$时，$pK_a$预期是会降低。$n <1$表示在$pH$依赖性渗透中具有抗协同性。$n$在这里不仅仅是调节因子。相反，它反映了$P_m$对$pH$值变化的敏感性，其起源于能够影响与膜相关的渗透物滴定的微环境。使用了基于等式2修改后的模型，我们重新评估了实验上PAMPA计算得到的$P^e_m$值。图4B中的红色实线给出了$pK^e_a$等于$7.63$和$n=0.99$。PAMPA得到的$pK^e_a$与“杂合”的预测相符，但是$n$接近$1$表示几乎没有抗协同性，这可以归因于实验中的高离子强度。新模型计算出来的$P^0_m$（$−1.85$）比基于等式1的原始模型（等式S9）高估的值（$0.06$）小$80$倍，是“杂合”值（$−2.50$）的$4.5$倍，可能是由于PAMPA膜中的成分不同造成的。我们无法使用等式2在单个$pH$值下通过脂质体测量来预测$P^0_m$，但是在$0.2~M$离子强度下，我们认为$pH$依赖性$P^e_m$图谱还应具有接近$7$的$pK^e_a$和接近$1$的$n$，最后估计的$P^0_m$值约为$-2$。
+
+
+\section{总结和展望}
+我们利用CpHMD模拟与伞型采样自由能表面分析相结合来研究药物分子PPL通过POPC脂质层的电离耦合渗透的过程。为了进一步的比较，我们也做了两个（PPL$^{+}$和PPL$^{0}$）离子态固定的模拟。结合动态质子化，CpHMD重现了具有最低自由能的渗透路径（图1B），这是通过共同考虑PPL$^{+}$和PPL$^{0}$得出的。与通常的假设相反，渗透途径表明PPL在膜内部而不是在表面进行离子化，这一结论是通过依赖$\Delta ZCOM$的$pK_a$值证实（图2C）。由渗透自由能计算或通过$pH$-REX的CpHMD预测的$pK_a$值与从$\log P$值推断的实验值一致（表S2）。当分子进入到磷脂双分子层内时，$\Delta pK_a$由于去溶剂化作用单调地增加（图2D和S6A），和之前的离子态固定和CpHMD模拟得到的结论一致。$pK_a$在脂质的羰基和甘油部分附近达到$7$（水溶液情况下的$pH$）（图2B，C）。这些结果与实验一致，该实验表明两亲分子以离子形式迁移到膜中，但以中性形式渗透，并为表面离子对模型和“ pH活塞假设”提供了支持。这些假设指出，可电离的分子取决于两性离子的头基或甘油/脂质尾部的电离状态。这些发现并不一定会推翻$pH$配分假说（PPL仍以中性形式渗透通过脂质尾巴区域），而是指向一种基本的补充理解（动态中和会增加可渗透性分子以包括一定比例的带电分子）。
+
+总的来说，这项工作证明了在渗透研究中考虑动态质子化的重要性。通过动态质子化，CpHMD预测的被动扩散$P_m$与实验测量值差大约$1\sim 3$倍。（表S3）。通过CpHMD模拟进行验证，基于固定电离态的自由能曲线得到的最低自由能渗透PMF，我们能够描绘出$P_m$作为$pH$的函数。所得的$pH$依赖性$P_m$值定量上与PAMPA确定的值相符，并且由于PAMPA膜组成的不同而存在一些预期偏差。重要的是，我们发现$pH$依赖的$P_m$曲线不能够用传统的模型来进行描述（等式1）。通过假设在膜表面未发生动态电离，传统模型低估了可渗透分子的数量，从而导致了基于实验测量的$P^e_m$高估了$P^0_m$。为了更好地描述可电离分子的膜分配和渗透，我们对等式1进行了修改，增加了Hill系数$n$以反映质子偶联渗透中的协同性/抗电性，并用$pK^e_a$代替$pK^{aq}_e$以反映分子在膜内的电离性（等式2）。此修改后的模型有助于解释违反$pH$分配假说的情况。例如，Regev等人发现当$pH$从$7.4$升高到$9.7$时，阿霉素的脂质体透过率仅为$2$倍，而等式1预测其将增加68倍。通常将这种偏离视为带电物质渗透。但是，当离子强度为$0.2~M$时，等式参数$pK^e_a=7$和$n=1$的情况下，等式2预测得到的值仅升高$\sim 1.4$倍，表明这种“假违反”起源于只有中性的分子会渗透的假设。
+
+值得注意的是我们的发现应谨慎对待。弱酸也可能以带电物质的形式结合POPC磷脂层，在扩散通过脂质尾巴之前中和（质子化），并在相反小叶的脂质尾巴中离去时再离子化（去质子化）。因此，表面离子对模型和“$pH$活塞假设”同样适用。但是，考虑到酸与POPC-水界面处带正电的三甲基铵基团的缔合，与弱碱缔合的带负电和更多掩埋的磷酸盐相反，预料会有轻微的偏差。在渗透方向上，$pK_a$会持续增加，并且质子化发生在$pK_a$升至7（水溶液的$pH$）的地方。上述的结论对于酸性氨基酸已经使用固定离子态模型和DpHMD进行了证明。假定只有中性物质通过脂质尾巴发生扩散，在低$pH$值时酸性$P^e_m$较为平稳，然后在高$pH$值时会发生降低。然而，因为忽略与膜相关的带电物质，传统模型（等式1和S9）依旧高估了$P^0_m$。两性电解质（至少具有一个酸性基团和一个碱性基团）是有趣的情况，因为它们可能采用三个或更多个电荷状态。但是，电解液在被动扩散的过程中如何调整他们的电离态在本文的篇幅中是没有办法得到的，这应该是后续工作的焦点。在$pK^{aq}_a$非常低的强酸或$pK^{aq}_a$非常高的碱的情况下，其在膜内的$pK_a$可能无法充分移动以使其中和。例如，精氨酸的$pK_a$在水中从$12.5$降低到磷脂层中心处的$\sim 7$，这表明精氨酸可以在膜内保持离子化。同样，可以通过瞬态水孔促进渗透，该瞬态水孔可以稳定离子化的物质并降低带电分子的渗透需要的能垒。但是，对于弱酸或弱碱，我们的发现表明它们可能作为中性物质渗透生物膜，这与其他计算研究得出的结论一致，同时也解释了为什么药物的$pK^{aq}_a$在$3.5\sim 10.5$范围内。同时，在本文中，我们使用的是纯膜体系并且只放了一个药物分子。引入可电离的膜“杂质”可能会使双层带电并影响药物渗透。已经证明，阴离子脂质或脂肪酸的存在会增加PPL在PC脂质体中的分布（表S2）和渗透性（表S4），因为PPL$^{+}$和带负电的膜之间强的静电吸引力，这一现象也就不足为奇了。如果多个PPL靠的很近，由于膜内部的介电常数较低，PPL$^{+}$之间的静电排斥力很大，它们的电离方式可能以反合作的方式进行耦合。因此，$pK_a$和Hill系数会更小，这以结论在可滴定脂肪酸和多糖聚集体中已经通过CpHMD证实了。但是，目前尚不清楚多种药物如何影响基于MD的$P_m$预测，因为这种影响可能是非累加的。
+
+与固定电离态模拟相比，pHMD不仅可以通过渗透过程中电荷状态的实时更新提供更真实的场景，而且计算效率更高，尤其是在存在两性电荷和/或多种渗透剂的情况下膜内部的状态可能会以不可预测的方式变化。但是使用pHMD研究渗透的时候也存在一些缺点，无法模拟显式的质子转移，因为pHMD模拟可电离位点相对于体相位点的相对去质子自由能或$\Delta pK_a$。实际上，当膜内部发生去质子化时，过量的质子将被周围的水分子接受并通过“Grotthuss shuttling”传输到体相水或可电离的头基中去。但是，此过程改变药物渗透自由能曲线的唯一方法是质子化水或脂质头基团是否具有吸引力，寿命长并且足够接近，从而以动力学上显着的方式改变药物的局部稳定性（也就是与药物作用很强，从而减慢药物的渗透）。鉴于预期的中性药物与此类质子化基团之间的相互作用较弱，在这种情况下这不太可能。根据我们先前对碳纳米管的研究，利用多尺度反应性分子动力学（MS-RMD），很好地模拟了膜内部的渗透途径，疏水性环境中的过量质子（$H_3O^+$在多个水域上离域）能量是不利的。当有大量的水连接可滴定的分子和体相水（图S6B-D），$H_3O^+$的释放是非常迅速的。因此，我们基于滴定相对于渗透是快速的假设来估算$P_m$。通过使用我们小组中开发的MS-RMD技术添加显式的质子转移，可以进行更严格的评估，这可能是未来工作的重点。由于POPC脂质的磷酸基团偶尔会与可滴定的PPL$^{+}$氮原子发生离子的配对（图S2），因此研究这部分如何通过过量质子释放到体相水中的是非常有趣的。在pHMD中开启对脂质和结合药物水的滴定将是探索其局部稳定性的另一种方法。在目前的工作中，pH高于4的情况下（如图4A所示），POPC脂质仍为两性离子，从而限制了它们在质子释放到体相水中时对中间体的影响。
+
+pHMD的另一个局限性在于它忽略了$pH$的改变在局部微环境（如膜表面）中的作用。关于在这项工作中应用的混合溶剂CpHMD方法，我们注意到由于潜在的GB模型的去溶剂化被低估，该方法系统地高估了膜内部的$\Delta pK_a$，尤其是在膜中心附近（图2C）。但是，根据先前的CpHMD研究，我们认为$\Delta pK_a$的方向是一定是对的。此外，混合溶剂的CpHMD方法忽略了与离子间显式的相互作用。尽管在本工作中，体系里没有离子也不会受离子的干扰，但是混合溶剂的CpHMD方法多少不适用于研究离子对的渗透过程。像所有基于MD的渗透研究一样，其他潜在的限制是需要包括双层不对称性，膜起伏和极化率。在此研究中，在对称的磷脂层系统上进行了一半系统（一个小叶）的采样，并通过镜像进入小叶中的那一部分从而生成了离开小叶的渗透曲线。当磷脂层的分布是对称以及采样收敛的情况下，渗透曲线应该是对称的。在本工作中，体系总共只有$52$个磷脂分子（$26$个每边），膜的起伏效应并不显著，得出的自由能曲线应该也尺寸不敏感的。分子在渗透过程中会经历介电环境的显着变化，因此可极化力场的描述在物理上可能更现实。然而，使用不可极化的力场不应损害这项工作的主要发现。也就是说，在研究可电离分子的薄膜渗透性时应考虑动态质子化，这也得到包括极化效应的研究所支持的。
+
+总之，我们已经应用了质子化和构象平衡动态耦合的CpHMD研究可离子化药物PPL通过POPC脂质双层的渗透。我们发现PPL以带电形式迁移到双层中并在疏水边界处去质子化，并且通过涉及动态质子化，$P_m$可以更准确地预测。渗透研究中通常假定的是，可离子化的分子必须在膜分配之前在溶液中进行中和。在这种情况下，低估了“有效”渗透物的量，从而导致高估了固有的$P_m$。我们也呈现了修改当前模型来更好的描述$pH$依赖的配分和渗透。尽管我们的发现需要等待在更大的数据量中的检验，这些发现表明，添加动态质子化能增进我们对可电离药物和类药物分子是如何渗透的理解，从而提高基于MD的$P_m$预测的准确性。最后，该工作表明了CpHMD可以用在渗透研究中。
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The same is true for Supporting Information, which should use the
+%% suppinfo environment.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{suppinfo}
+%
+%A listing of the contents of each file supplied as Supporting Information
+%should be included. For instructions on what should be included in the
+%Supporting Information as well as how to prepare this material for
+%publications, refer to the journal's Instructions for Authors.
+%
+%The following files are available free of charge.
+%\begin{itemize}
+%  \item Filename: brief description
+%  \item Filename: brief description
+%\end{itemize}
+%
+%\end{suppinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The appropriate \bibliography command should be placed here.
+%% Notice that the class file automatically sets \bibliographystyle
+%% and also names the section correctly.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\bibliography{achemso-demo}
+
+\end{document}
