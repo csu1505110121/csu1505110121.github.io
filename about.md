@@ -18,7 +18,7 @@ permalink: /about/
 
 Hello!
 
-My name is Qiang Zhu, I am pursuing my Ph.D. degree at the [Institution of Theoretical and Computational Chemistry (ITCC)](http://itcc.nju.edu.cn/zh/) of [Nanjing University](https://www.nju.edu.cn/EN/), under the supervision of Prof. [Jing Ma](http://itcc.nju.edu.cn/majing/awards.html) and Prof. [Hao Dong](https://sites.google.com/site/donghaonj/). 
+My name is Qiang Zhu, I received my Ph.D. degree at the [Institution of Theoretical and Computational Chemistry (ITCC)](http://itcc.nju.edu.cn/zh/) of [Nanjing University](https://www.nju.edu.cn/EN/), under the supervision of Prof. [Jing Ma](http://itcc.nju.edu.cn/majing/awards.html) and Prof. [Hao Dong](https://sites.google.com/site/donghaonj/). 
 
 My research interests mainly include developing algorithms and utilizing molecular dynamics simulations to disclose something at atomic scale: 
 - [Enhanced Sampling Method](https://onlinelibrary.wiley.com/doi/abs/10.1002/adts.201800171);
