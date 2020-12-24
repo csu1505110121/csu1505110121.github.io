@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Homebrew install on Mac M1 silicon"
+title:  "Installment of Homebrew on Mac M1 silicon"
 date:   2020-12-24 15:20 +0800
 categories: Mac
 tags: Mac, homebrew, jekyll
