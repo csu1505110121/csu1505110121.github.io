@@ -69,20 +69,20 @@ brew install -s wget
 
 # [jekyll 安装测试](https://jekyllrb.com/docs/installation/macos/)
 
-1. 安装CTL(command line tools)
+* 安装CTL(command line tools)
 
 ```bash
 xcode-select --install
 ```
 
-2. 安装Ruby
+* 安装Ruby
 
 ```bash
 # Install Ruby -s选项表示源码编译
 brew install -s ruby
 ```
 
-3. 将ruby加入到环境变量中
+* 将ruby加入到环境变量中
 
 ```bash
 # If you're using Zsh
@@ -95,7 +95,7 @@ echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.bash_profile
 echo $SHELL
 ```
 
-4. 安装jekyll (local install)
+* 安装jekyll (local install)
 
 ```bash
 gem install --user-install bundler jekyll

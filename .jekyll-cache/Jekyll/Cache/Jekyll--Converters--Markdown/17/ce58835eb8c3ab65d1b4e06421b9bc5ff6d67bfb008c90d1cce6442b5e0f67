@@ -1,4 +1,4 @@
-I"m<!--
+I"6<!--
  >Theory and Computational Biology: From Molecular to System
 -->
 <!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
@@ -16,8 +16,8 @@ Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载
 <p>但是截止到这篇blog，homebrew使用原始x86都无法正常安装，本文的安装主要参照一下两篇blog：</p>
 
 <ul>
-  <li>https://www.dbform.com/2020/11/30/how-to-install-native-homebrew-on-an-apple-silicon-m1-mac/</li>
-  <li>https://blog.csdn.net/csdn2314/article/details/110952637</li>
+  <li><a href="https://www.dbform.com/2020/11/30/how-to-install-native-homebrew-on-an-apple-silicon-m1-mac/">https://www.dbform.com/2020/11/30/how-to-install-native-homebrew-on-an-apple-silicon-m1-mac/</a></li>
+  <li><a href="https://blog.csdn.net/csdn2314/article/details/110952637">https://blog.csdn.net/csdn2314/article/details/110952637</a></li>
 </ul>
 
 <h1 id="homebrew在2020-mac-m1-silicon上的安装方法">Homebrew在2020 Mac M1 silicon上的安装方法</h1>
@@ -63,32 +63,40 @@ brew <span class="nb">install</span> <span class="nt">-s</span> wget
 
 <h1 id="jekyll-安装测试"><a href="https://jekyllrb.com/docs/installation/macos/">jekyll 安装测试</a></h1>
 
-<ol>
-  <li>安装CTL(command line tools)
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xcode-select <span class="nt">--install</span>
-</code></pre></div>    </div>
-  </li>
-  <li>安装Ruby
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install Ruby -s选项表示源码编译</span>
+<ul>
+  <li>安装CTL(command line tools)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xcode-select <span class="nt">--install</span>
+</code></pre></div></div>
+
+<ul>
+  <li>安装Ruby</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install Ruby -s选项表示源码编译</span>
 brew <span class="nb">install</span> <span class="nt">-s</span> ruby
-</code></pre></div>    </div>
-  </li>
-  <li>将ruby加入到环境变量中
-```bash
-    <h1 id="if-youre-using-zsh">If you’re using Zsh</h1>
-    <p>echo ‘export PATH=”/usr/local/opt/ruby/bin:$PATH”’ » ~/.zshrc</p>
-  </li>
-</ol>
+</code></pre></div></div>
 
-<h1 id="if-youre-using-bash">If you’re using Bash</h1>
-<p>echo ‘export PATH=”/usr/local/opt/ruby/bin:$PATH”’ » ~/.bash_profile</p>
+<ul>
+  <li>将ruby加入到环境变量中</li>
+</ul>
 
-<h1 id="unsure-which-shell-you-are-using-type">Unsure which shell you are using? Type</h1>
-<p>echo $SHELL</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-4. 安装jekyll (local install)
-```bash
-gem install --user-install bundler jekyll
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># If you're using Zsh</span>
+<span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/ruby/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+
+<span class="c"># If you're using Bash</span>
+<span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/ruby/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bash_profile
+
+<span class="c"># Unsure which shell you are using? Type</span>
+<span class="nb">echo</span> <span class="nv">$SHELL</span>
+</code></pre></div></div>
+
+<ul>
+  <li>安装jekyll (local install)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install</span> <span class="nt">--user-install</span> bundler jekyll
 </code></pre></div></div>
 
 :ET
