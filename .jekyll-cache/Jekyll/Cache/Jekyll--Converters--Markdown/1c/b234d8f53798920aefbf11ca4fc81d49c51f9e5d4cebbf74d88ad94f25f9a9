@@ -1,0 +1,4 @@
+I"�<p>打开网络转发机制</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">"1"</span> <span class="o">&gt;</span> /proc/sys/net/ipv4/ip_forward</code></pre></figure>
+:ET

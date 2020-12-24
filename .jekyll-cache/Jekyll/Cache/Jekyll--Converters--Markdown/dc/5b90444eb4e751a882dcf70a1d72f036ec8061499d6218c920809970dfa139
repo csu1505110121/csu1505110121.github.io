@@ -1,0 +1,251 @@
+I"(?<!--
+ >Theory and Computational Biology: From Molecular to System
+-->
+<blockquote>
+  <p>当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！</p>
+  <p align="right">-- Forty Braver </p>
+</blockquote>
+
+<h1 id="三个课程作业">三个课程作业</h1>
+
+<p>我将我用到的模板都附在后面，大家想用的话可以直接下载下来使用！</p>
+
+<ul>
+  <li>文献翻译 (找一篇和自己课题相关的文献翻一下，文献长短个人选择，当然你可以和老师商量下)
+<a href="/assets/PhD_details/qiang_homework_1/homework_1_translate.tex">Download</a> /
+<a href="/assets/PhD_details/qiang_homework_1/homework_1_translate.pdf">Templet</a></li>
+  <li>两个专业课 (这两个涉及到了具体的结果我就不上传了，有需要的可以问我要)
+    <ul>
+      <li>现代量子化学研究进展 (可以把你平时的ppt整体下然后merge成一个整体，所以平时的ppt都要保存好哦！)</li>
+      <li>研究报告 (可以把你毕业论文的绪论部分修改下直接搬过来（这个是最偷懒的办法），当然还需要改一改，不要自己都看不过去)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>三个作业的封面列在下方：</p>
+
+<p><a href="/assets/PhD_details/covers/professional_english.doc">文献翻译</a>/<a href="/assets/PhD_details/covers/progress.doc">现代量子化学进展</a>/<a href="/assets/PhD_details/covers/research_report.doc">研究报告</a></p>
+
+<p>2020 年的具体要求我列在这个文件里了，需要自取。</p>
+<ul>
+  <li><a href="/assets/PhD_details/requirments/2020_NJU_PhD_details.pdf">2020 南京大学博士毕业具体及学位申请流程</a></li>
+  <li><a href="/assets/PhD_details/requirments/2020_templet_emails.docx">2020 博士课程邮件模板</a></li>
+  <li><a href="/assets/PhD_details/requirments/2020_templet_grades.docx">2020 毕业论文成绩模板</a></li>
+</ul>
+
+<h1 id="博士毕业论文">博士毕业论文</h1>
+<p>这里给师弟/妹们安利下使用<a href="https://www.latex-project.org">LaTeX</a>来书写你的毕业论文，如果还是喜欢用<em>Word</em>或者<em>WPS</em>的话下面的内容看官可以忽略了，下面主要是给使用<strong>LaTeX</strong>的同志们准备的。</p>
+
+<p><strong>使用LaTeX来书写NJU博士论文的好处</strong></p>
+<ul>
+  <li>开源啊，不要钱啊！！！（主要是我Mac版的<em>WORD</em>像个智障，还有Latex在<em>ubuntu</em>上也可以使用）</li>
+  <li>格式什么不需要care（包括字体还有文献的格式统统都是模板，只要填内容就好）；</li>
+  <li>不用担心电脑内存导致的辛辛苦苦码半天，最后因为格式的问题保存不了的尴尬处境；</li>
+  <li>写过论文的都知道，毕业论文的文献较多，如果用Endnote导入的话，不可避免的会造成电脑卡死的情况哦（主要还是我的电脑辣鸡）！！！</li>
+</ul>
+
+<p><strong>但是使用LaTeX的缺点(只谈优点不谈缺点的都是耍流氓)</strong></p>
+<ul>
+  <li>上手比较费时，但是好在有Google和Baidu啊</li>
+</ul>
+
+<p>下面进入正题，首先把LaTeX安装好，然后去<a href="https://github.com/Haixing-Hu/nju-thesis">Haixing Hu</a>的github主页上把NJU博士论文的模板下载下来，里面哪个地方填什么<em>Hu</em>都用中文注释的比较清楚，大家跟着他的来就可以。</p>
+
+<p>对于一些个性化的设置，这里感谢下<em>Dr. Xiaoyu Xie</em>，下面是他就<em>Hu</em>的版本进行的修改方面的建议。</p>
+
+<hr />
+
+<p><strong>资源获取（南京大学胡海星博士提供）</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/Haixing-Hu/nju-thesis.git
+</code></pre></div></div>
+
+<p><strong>字体问题</strong></p>
+
+<p>作者提供了四种体字系统: windows, linux, mac 及 adobe。调用时在<code class="language-plaintext highlighter-rouge">\documentclass</code>处指定（以Windows为例）：</p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="na">[winfonts]</span><span class="p">{</span>njuthesis<span class="p">}</span>
+</code></pre></div></div>
+<p>各个体统的默认的格式为：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>adobefonts</th>
+      <th>winfonts</th>
+      <th>linuxfonts</th>
+      <th>macfonts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>宋体</td>
+      <td>Adobe Song Std</td>
+      <td>SimSun</td>
+      <td>AR PL SungtiL GB</td>
+      <td>STSong</td>
+    </tr>
+    <tr>
+      <td>黑体</td>
+      <td>Adobe Heiti Std</td>
+      <td>SimHei</td>
+      <td>WenQuanYi Zen Hei Mono</td>
+      <td>STHeiti</td>
+    </tr>
+    <tr>
+      <td>楷体</td>
+      <td>Adobe Kaiti Std</td>
+      <td>KaiTi</td>
+      <td>AR PL KaitiM GB</td>
+      <td>STKaiti</td>
+    </tr>
+    <tr>
+      <td>仿宋体</td>
+      <td>Adobe Fangsong Std</td>
+      <td>FangSong</td>
+      <td>STFangsong</td>
+      <td>STFangsong</td>
+    </tr>
+    <tr>
+      <td>Serif</td>
+      <td>Times</td>
+      <td>Times New Roman</td>
+      <td>Times</td>
+      <td>Times</td>
+    </tr>
+    <tr>
+      <td>Sans</td>
+      <td>Helvetica</td>
+      <td>Arial</td>
+      <td>Helvetica</td>
+      <td>Helvetica</td>
+    </tr>
+    <tr>
+      <td>Mono</td>
+      <td>Courier</td>
+      <td>Courier New</td>
+      <td>Courier</td>
+      <td>Courier</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>可根据要求安装相应的字体，也可在<code class="language-plaintext highlighter-rouge">njuthesis.dtx</code>文件中修改字体为自己机器中以有的字体。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">%    \begin{macrocode}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@songti@win<span class="p">}{</span>NSimSun<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@heiti@win<span class="p">}{</span>SimHei<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@kaishu@win<span class="p">}{</span>KaiTi<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@fangsong@win<span class="p">}{</span>FangSong<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">%</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@main@win<span class="p">}{</span>Times New Roman<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@sans@win<span class="p">}{</span>Arial<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@mono@win<span class="p">}{</span>Courier New<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">%</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@songti@linux<span class="p">}{</span>AR PL SungtiL GB<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@heiti@linux<span class="p">}{</span>WenQuanYi Zen Hei Mono<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@kaishu@linux<span class="p">}{</span>AR PL KaitiM GB<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@fangsong@linux<span class="p">}{</span>STFangSong<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">%</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@main@linux<span class="p">}{</span>Times<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@sans@linux<span class="p">}{</span>Helvetica<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@mono@linux<span class="p">}{</span>Courier<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">%</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@songti@mac<span class="p">}{</span>STSong<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@heiti@mac<span class="p">}{</span>STHeiti<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@kaishu@mac<span class="p">}{</span>STKaiti<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@fangsong@mac<span class="p">}{</span>STFangsong<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">%</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@main@mac<span class="p">}{</span>Times<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@sans@mac<span class="p">}{</span>Helvetica<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@mono@mac<span class="p">}{</span>Courier<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">%</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@songti@adobe<span class="p">}{</span>Source Han Serif CN<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@heiti@adobe<span class="p">}{</span>Source Han Sans CN<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@kaishu@adobe<span class="p">}{</span>KaiTi<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@zhfn@fangsong@adobe<span class="p">}{</span>FangSong<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">%</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@main@adobe<span class="p">}{</span>Source Serif Pro<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@sans@adobe<span class="p">}{</span>Source Sans Pro<span class="p">}</span>
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@enfn@mono@adobe<span class="p">}{</span>Courier<span class="p">}</span>
+<span class="c">%&lt;/cfg&gt;</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">%</span>
+</code></pre></div></div>
+
+<p><strong>自定义环境问题</strong>
+在<code class="language-plaintext highlighter-rouge">njuthesis.dtx</code>文件中有许多自定义的环境，如<code class="language-plaintext highlighter-rouge">resume</code>（简历和科研成果）及其下的<code class="language-plaintext highlighter-rouge">education</code>、<code class="language-plaintext highlighter-rouge">publication</code>和<code class="language-plaintext highlighter-rouge">projects</code>等。本质上这些都是黑体标题或含标题的列表。以<code class="language-plaintext highlighter-rouge">publication</code>为例，其定义主要是如下两部分</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\newcommand*</span><span class="p">{</span>njut@capresume@publications<span class="p">}{</span>
+  攻读<span class="p">{</span><span class="k">\nju</span>@value@degree<span class="p">}</span>学位完成的学术成果
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% \begin{environment}{publications}</span>
+<span class="c">% 定义作者攻读学位期间发表论文列表环境。此环境必须被放在|resume|环境中。</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newenvironment</span><span class="p">{</span>publications<span class="p">}{</span>
+  <span class="k">\paragraph*</span><span class="p">{</span><span class="k">\njut</span>@cap@resume@publications<span class="p">}</span>
+  <span class="nt">\begin{enumerate}</span>[label=<span class="k">\arabic*</span>., labelindent=0em, leftmargin=*]
+<span class="p">}{</span>
+  <span class="nt">\end{enumerate}</span>
+<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">% \end{environment}</span>
+</code></pre></div></div>
+
+<p>如需自定义环境，可以依葫芦画瓢。如修改并扩充上述环境为“已发表文章”及“待发表文章”环境可添加</p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@cap@resume@publications<span class="p">}{</span>
+攻读<span class="p">{</span><span class="k">\njut</span>@value@degree<span class="p">}</span>学位期间已发表的学术成果
+<span class="p">}</span>
+
+<span class="k">\newcommand*</span><span class="p">{</span><span class="k">\njut</span>@cap@resume@unpublish<span class="p">}{</span>
+攻读<span class="p">{</span><span class="k">\njut</span>@value@degree<span class="p">}</span>学位期间待发表的学术成果
+<span class="p">}</span>
+
+
+<span class="c">% \begin{environment}{publications}</span>
+<span class="c">% 定义作者攻读学位期间发表论文列表环境。此环境必须被放在|resume|环境中。</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newenvironment</span><span class="p">{</span>publications<span class="p">}{</span>
+  <span class="k">\paragraph*</span><span class="p">{</span><span class="k">\njut</span>@cap@resume@publications<span class="p">}</span>
+  <span class="nt">\begin{enumerate}</span>[label=<span class="k">\arabic*</span>., labelindent=0em, leftmargin=*]
+<span class="p">}{</span>
+  <span class="nt">\end{enumerate}</span>
+<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">% \end{environment}</span>
+
+<span class="c">% \begin{environment}{unpublish}</span>
+<span class="c">% 定义作者攻读学位期间发表论文列表环境。此环境必须被放在|resume|环境中。</span>
+<span class="c">%    \begin{macrocode}</span>
+<span class="k">\newenvironment</span><span class="p">{</span>unpublish<span class="p">}{</span>
+  <span class="k">\paragraph*</span><span class="p">{</span><span class="k">\njut</span>@cap@resume@unpublish<span class="p">}</span>
+  <span class="nt">\begin{enumerate}</span>[label=<span class="k">\arabic*</span>., labelindent=0em, leftmargin=*]
+<span class="p">}{</span>
+  <span class="nt">\end{enumerate}</span>
+<span class="p">}</span>
+<span class="c">%    \end{macrocode}</span>
+<span class="c">% \end{environment}</span>
+</code></pre></div></div>
+
+<p>另，安装后<code class="language-plaintext highlighter-rouge">\newcommand</code>和<code class="language-plaintext highlighter-rouge">\newenvironment</code>分别存于<code class="language-plaintext highlighter-rouge">njuthesis.cfg</code>文件和<code class="language-plaintext highlighter-rouge">njuthesis.cls</code>文件中,也可以直接修改这两个文件。</p>
+
+<p>写在最后：
+<strong>祝各位毕业顺利！！！</strong></p>
+
+:ET
