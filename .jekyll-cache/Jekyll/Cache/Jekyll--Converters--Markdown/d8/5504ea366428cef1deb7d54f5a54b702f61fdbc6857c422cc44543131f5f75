@@ -1,0 +1,47 @@
+I"�
+<!--
+ >Theory and Computational Biology: From Molecular to System
+-->
+<!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
+> <p align="right">-- Forty Braver </p>
+-->
+<p>寒假来临，在家的同志对远程办公可谓是重度依赖了。对于远程办公，实验室的同僚往往使用的是Teamviewer，但是如果实验室没有网络，Teamviewer掉线，那么在家的同志也就无法进行相应的远程操作了。今天我就分享下如何在Windows 10操作系统下（在Linux下更加是丝般顺滑），每隔一段时间自动进行网络接入的方法，目前该方法只在南京大学网络下测试过，但是对于其他需要通过页面认证进行拨入的也一样适用。</p>
+
+<h1 id="准备条件">准备条件</h1>
+
+<ul>
+  <li>
+    <p>安装Ubuntu桌面子系统（Linux用户可以直接跳过这一步）
+具体的安装过程不是这篇博文的重点，大家可以参照这篇<a href="https://www.jianshu.com/p/2bcf5eca5fbc">简书</a>进行安装，如果只需要简单的功能仅仅进行到第四步就可以了。</p>
+  </li>
+  <li>
+    <p>bras脚本的编写</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c"># username 是你登录网页所需要的账号</span>
+<span class="c"># password 是账号对应的密码</span>
+<span class="c"># http://p.nju.edu.cn/portal_io/login 是对应登录界面所对应的网址</span>
+curl <span class="nt">-d</span> <span class="s2">"username=xxxxx&amp;password=xxxxx"</span> http://p.nju.edu.cn/portal_io/login &lt;/dev/null 2&gt;/dev/null
+</code></pre></div></div>
+
+<p>有兴趣的朋友可以看下<code class="language-plaintext highlighter-rouge">curl</code>的参数详解</p>
+
+<ul>
+  <li>将bash脚本复制到Ubuntu系统中去，命名为<code class="language-plaintext highlighter-rouge">bras.sh</code>（名字可以任意，只是为了或许方便）</li>
+</ul>
+
+<h1 id="执行操作">执行操作</h1>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#在Ubuntu子系统的命令行中输入如下命令：</span>
+watch <span class="nt">-n</span> xx bash bras.sh
+<span class="c">#其中xx是对应的时间，在本例子中我输入的60表示每隔60s的时间就会执行一次bash bras.sh这个命令，更加具体的参数大家可以参考下watch这一命令</span>
+</code></pre></div></div>
+<p>登录成功的话会出现如下界面</p>
+<div align="center">
+<img src="/assets/2021_bras/bras_connection.png" width="1696" height="348" alt="bras connection" />
+ </div>
+
+:ET

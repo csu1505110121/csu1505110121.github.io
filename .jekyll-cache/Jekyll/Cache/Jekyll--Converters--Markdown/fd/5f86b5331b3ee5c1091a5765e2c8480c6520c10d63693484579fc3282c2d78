@@ -1,0 +1,8 @@
+I"y<!--
+ >Theory and Computational Biology: From Molecular to System
+-->
+<!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
+> <p align="right">-- Forty Braver </p>
+-->
+<p>最近组里面的师弟师妹们爱上了使用linux，那linux下的一些科研软件的安装并不像window上安装那么方便。例如一些常用的量化软件，Gaussian和gaussian view。在这篇blog中我就简单介绍下gaussian和gaussian view如何在linux下安装并使用，虽然本教程是在ubuntu 15.10下进行的，但是在centos版本的linux下也同样适用。</p>
+:ET
