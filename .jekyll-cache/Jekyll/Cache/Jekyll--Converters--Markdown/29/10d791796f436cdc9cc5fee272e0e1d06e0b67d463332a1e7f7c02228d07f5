@@ -1,0 +1,70 @@
+I"�<!--
+ >Theory and Computational Biology: From Molecular to System
+-->
+<!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
+> <p align="right">-- Forty Braver </p>
+-->
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<blockquote>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>曾国藩曾一再教育后人，不希望他们做官发财，唯愿他们读书明理，做科研或许也是这样。
+								-- 前三句来自《曾国藩传》		
+</code></pre></div>  </div>
+</blockquote>
+
+<p>在巴菲特致股东的一份信中，巴菲特自述其一直就是复利的拥护者，那么我们今天就来谈一谈复利真的有巴菲特标榜的那么厉害么？</p>
+
+<p>首先我们还是先了解下什么是复利(Compound Interest)
+我觉得这篇<a href="https://www.zhihu.com/question/337486790/answer/767866020">知乎</a>讲的挺不错的，大家有兴趣的可以去看下。</p>
+
+<p>经济学家用一个公式表达复利效应：</p>
+
+\[Asset = (1+r)^n\]
+
+<p>\(r\) 表示你所增长的速率，譬如年率或者日利率，\(n\)表示年数或者天数
+如果有数学常识的同学就会发现，主要\(r\)是positive的，那么Asset的数值一定是大于\(1\)的，所以\(r\) 和 \(n\) 都是两个必不可少的因素，\(r\) 的数值不必过大（往往年收益率在5%都可以取得不错的结构，\(r\)代表着耐心），\(n\)表示着坚持。</p>
+
+<p>为此我们创建一个较为简单的模型体系</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>小明手上有10万元，他找到了一个很好的项目进行投资，年回报率在10%，他非常的开心，就把10万元都投入到了
+
+这个项目中去，现在有两种分红方式：1）一种是现金分红，就是在10w的基础上，将红利直接转出，本金仍然是1
+
+0w；2）另一种是红利再投，就是在本金10w的基础上不断地将红利变成本金，我们来看看十年后小明按照两种方
+
+式的收益率分别多少？
+</code></pre></div></div>
+<p>两种方式的收益率如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">分红方式</th>
+      <th style="text-align: center">5 Years</th>
+      <th style="text-align: center">10 Years</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">现金分红</td>
+      <td style="text-align: center">0.5</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">红利再投</td>
+      <td style="text-align: center">\((1+0.1)^5 - 1 = 0.611\)</td>
+      <td style="text-align: center">\((1+0.1)^{10} - 1 = 1.594\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>可以看出，两种方式下，红利再投\(10\)年内的收益率是现金分红的1.6倍，即使在5年的时间收益率也是现金分红的1.2倍。</p>
+
+<!-- <div align="center">
+<img src="/assets/2021_bras/bras_connection.png" width = "" height = "" alt="bras connection"/>
+ </div>
+-->
+
+<p>最后，祝大家新年快乐！</p>
+
+:ET
