@@ -12,7 +12,6 @@ tags: Compound Interest
 > <p align="right">-- Forty Braver </p>
 -->
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 
 >	曾国藩曾一再教育后人，不希望他们做官发财，唯愿他们读书明理，做科研或许也是这样。
