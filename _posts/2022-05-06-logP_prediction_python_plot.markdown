@@ -17,7 +17,7 @@ tags: scientific plot
 >	风物长宜放眼量，小不忍则乱大谋。（与君共勉）
 
 
-终于将预测脂水分配系数的工具投出去了，腾出部分时间来进行相关的总结了。（我把[Manuscript]({{site.url}}/assets/2022_python_plot/MS.pdf)和[Supprotin information]({{site.url}}/assets/2022_python_plot/SI.pdf)也一起放在这篇博客的后面，感兴趣的朋友可以取用，如果能引用就更加欢迎了！）
+终于将预测脂水分配系数的工具投出去了，腾出部分时间来进行相关的总结了。（我把[Manuscript]({{site.url}}/assets/2022_python_plot/MS.pdf)和[Supporting information]({{site.url}}/assets/2022_python_plot/SI.pdf)也一起放在这篇博客的后面，感兴趣的朋友可以取用，如果能引用就更加欢迎了！）
 
 
 上次做完组会报告，隔壁实验室的师弟问我要了ppt说是想学习下我的作图，心中暗想自己的作图居然能得到部分认可，本着授之以鱼，不如授之以渔的观念，我干脆把我作图用到的脚本也全都online吧，一来可以做个科研记录，二来如果对志同道合的朋友有所帮助岂不美哉！
