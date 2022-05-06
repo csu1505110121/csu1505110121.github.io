@@ -1,49 +1,44 @@
----
-layout: post
-title:  "python科学绘图"
-date:   2022-05-06 08:56 +0800
-categories: Python
-tags: scientific plot
----
-<!--
+I"�b<!--
  >Theory and Computational Biology: From Molecular to System
 -->
 <!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
 > <p align="right">-- Forty Braver </p>
 -->
 
+<blockquote>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>风物长宜放眼量，小不忍则乱大谋。（与君共勉）
+</code></pre></div>  </div>
+</blockquote>
 
+<p>终于将预测脂水分配系数的工具投出去了，腾出部分时间来进行相关的总结了。（我把<a href="/assets/2022_python_plot/MS.pdf">Manuscript</a>和<a href="/assets/2022_python_plot/SI.pdf">Supprotin information</a>也一起放在这篇博客的后面，感兴趣的朋友可以取用，如果能引用就更加欢迎了！）</p>
 
->	风物长宜放眼量，小不忍则乱大谋。（与君共勉）
+<p>上次做完组会报告，隔壁实验室的师弟问我要了ppt说是想学习下我的作图，心中暗想自己的作图居然能得到部分认可，本着授之以鱼，不如授之以渔的观念，我干脆把我作图用到的脚本也全都online吧，一来可以做个科研记录，二来如果对志同道合的朋友有所帮助岂不美哉！</p>
 
+<p>因为这篇工作99%的工作都是在python的框架下完成的，利用<code class="language-plaintext highlighter-rouge">matplotlib</code>工具包绘制图片远比利用<code class="language-plaintext highlighter-rouge">gnuplot</code>要方便地多，所以后续呈现的图也绝大多数都是利用python实现的。</p>
 
-终于将预测脂水分配系数的工具投出去了，腾出部分时间来进行相关的总结了。（我把[Manuscript]({{site.url}}/assets/2022_python_plot/MS.pdf)和[Supprotin information]({{site.url}}/assets/2022_python_plot/SI.pdf)也一起放在这篇博客的后面，感兴趣的朋友可以取用，如果能引用就更加欢迎了！）
+<p>本教程中用到的相关库的版本如下，大家也可以不必局限于这个版本，本教程中的图都是正文和SI中出现的子图，整个图片的整合可以利用各自喜欢的软件来进行，我比较倾向于利用<code class="language-plaintext highlighter-rouge">power point</code>来进行组合，大家可以用<code class="language-plaintext highlighter-rouge">Photoshop</code>等工具来进行。</p>
 
+<h2 id="requirement">Requirement</h2>
 
-上次做完组会报告，隔壁实验室的师弟问我要了ppt说是想学习下我的作图，心中暗想自己的作图居然能得到部分认可，本着授之以鱼，不如授之以渔的观念，我干脆把我作图用到的脚本也全都online吧，一来可以做个科研记录，二来如果对志同道合的朋友有所帮助岂不美哉！
+<ul>
+  <li>Python <code class="language-plaintext highlighter-rouge">3.8</code></li>
+  <li>numpy <code class="language-plaintext highlighter-rouge">1.21.1</code></li>
+  <li>pandas <code class="language-plaintext highlighter-rouge">1.3.1</code></li>
+  <li>matplotlib <code class="language-plaintext highlighter-rouge">3.4.2</code></li>
+  <li>rdkit <code class="language-plaintext highlighter-rouge">2021.03.5</code></li>
+</ul>
 
-因为这篇工作99%的工作都是在python的框架下完成的，利用`matplotlib`工具包绘制图片远比利用`gnuplot`要方便地多，所以后续呈现的图也绝大多数都是利用python实现的。
+<h2 id="figures">Figures</h2>
 
-本教程中用到的相关库的版本如下，大家也可以不必局限于这个版本，本教程中的图都是正文和SI中出现的子图，整个图片的整合可以利用各自喜欢的软件来进行，我比较倾向于利用`power point`来进行组合，大家可以用`Photoshop`等工具来进行。
+<h1 id="红外光谱图绘制">红外光谱图绘制</h1>
 
-## Requirement
+<p>highlighted points:</p>
+<ul>
+  <li>绘制双Y轴并对两个轴着不同的颜色；</li>
+  <li>绘制离散的竖线，利用<code class="language-plaintext highlighter-rouge">vline</code>来进行绘制</li>
+</ul>
 
-- Python `3.8`
-- numpy `1.21.1`
-- pandas `1.3.1`
-- matplotlib `3.4.2`
-- rdkit `2021.03.5`
-
-## Figures
-
-# 红外光谱图绘制
-
-highlighted points:
- - 绘制双Y轴并对两个轴着不同的颜色；
- - 绘制离散的竖线，利用`vline`来进行绘制
-
- ```
- #!/bin/python
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> #!/bin/python
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -129,27 +124,26 @@ plt.tight_layout()
 plt.savefig('examplt_ir_broaden.png',dpi=1000,bbox_inches='tight')
 
 plt.show()
- ```
+</code></pre></div></div>
 
 <div align="center">
-<img src="{{site.url}}/assets/2022_python_plot/examplt_ir_broaden.png" width = "800" height = "" alt="output"/>
+<img src="/assets/2022_python_plot/examplt_ir_broaden.png" width="800" height="" alt="output" />
  </div>
 
-[script]({{site.url}}/assets/2022_python_plot/plot_ir.py), [ir_data]({{site.url}}/assets/2022_python_plot/example_ir.txt)
+<p><a href="/assets/2022_python_plot/plot_ir.py">script</a>, <a href="/assets/2022_python_plot/example_ir.txt">ir_data</a></p>
 
+<h1 id="静电势的绘制非python绘图">静电势的绘制（非python绘图）</h1>
 
-# 静电势的绘制（非python绘图）
-
-1. 首先利用`gaussian`产生对应的`density.cube`和`potential.cube`文件，具体命令如下:
-```
-formchk *.chk *.fchk
-cubegen 0 density *.fchk density.cube 0 h &
-cubegeb 0 potential *.fchk potential.cube 0 h &
+<ol>
+  <li>首先利用<code class="language-plaintext highlighter-rouge">gaussian</code>产生对应的<code class="language-plaintext highlighter-rouge">density.cube</code>和<code class="language-plaintext highlighter-rouge">potential.cube</code>文件，具体命令如下:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>formchk *.chk *.fchk
+cubegen 0 density *.fchk density.cube 0 h &amp;
+cubegeb 0 potential *.fchk potential.cube 0 h &amp;
 # 相关的命令解释我就不做介绍了，大家有兴趣的可以去gaussian官网上查询！
-```
-2. 利用sob老师给出的`ESPiso.vmd`脚本产生对应的静电势图 (致谢师妹付路路！)
-```
-#This script is used to draw ESP colored molecular vdW surface (rho=0.001) 
+</code></pre></div>    </div>
+  </li>
+  <li>利用sob老师给出的<code class="language-plaintext highlighter-rouge">ESPiso.vmd</code>脚本产生对应的静电势图 (致谢师妹付路路！)
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#This script is used to draw ESP colored molecular vdW surface (rho=0.001) 
 #density1.cub, ESP1.cub, density2.cub, ESP2.cub ... should be presented in current folder 
 color scale method BWR 
 color Display Background white 
@@ -164,7 +158,7 @@ set nsystem 1
 #Lower and upper limit of color scale of ESP (a.u.) 
 set colorlow -0.03 
 set colorhigh 0.03 
-for {set i 1} {$i<=$nsystem} {incr i} { 
+for {set i 1} {$i&lt;=$nsystem} {incr i} { 
 set id [expr $i-1] 
 mol new density.cube 
 mol addfile potential$i.cube               # this should be replaced with your defined filename 
@@ -175,19 +169,20 @@ mol modmaterial 1 $id EdgyGlass
 mol modcolor 1 $id Volume 1 
 mol scaleminmax $id 1 $colorlow $colorhigh 
 }
-```
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <div align="center">
-<img src="{{site.url}}/assets/2022_python_plot/example_esp.png" width = "500" height = "" alt="esp"/>
+<img src="/assets/2022_python_plot/example_esp.png" width="500" height="" alt="esp" />
  </div>
 
- script:[ESPiso.vmd]({{site.url}}/assets/2022_python_plot/ESPiso.vmd)
+<p>script:<a href="/assets/2022_python_plot/ESPiso.vmd">ESPiso.vmd</a></p>
 
-# 绘制gaussian计算得到的振动模式 (非python绘图)
+<h1 id="绘制gaussian计算得到的振动模式-非python绘图">绘制gaussian计算得到的振动模式 (非python绘图)</h1>
 
-同样是结合`VMD`食用，致谢付路路师妹！
-```
-if you have any questions, please ref http://sobereva.com/567
+<p>同样是结合<code class="language-plaintext highlighter-rouge">VMD</code>食用，致谢付路路师妹！</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if you have any questions, please ref http://sobereva.com/567
 Usage:
 source GauNorm.tcl
 norm $imode $scalfac $rad $color
@@ -196,19 +191,20 @@ norm $imode $scalfac $rad $color
 - sclfac: length of the vector
 - rad: radius of the arrow
 - colors: default set to be yellow
-```
+</code></pre></div></div>
 
-scripts:[GauNorm.tcl]({{site.url}}/assets/2022_python_plot/GauNorm.tcl), [drawarrow.tcl]({{site.url}}/assets/2022_python_plot/drawarrow.tcl)
+<p>scripts:<a href="/assets/2022_python_plot/GauNorm.tcl">GauNorm.tcl</a>, <a href="/assets/2022_python_plot/drawarrow.tcl">drawarrow.tcl</a></p>
 
-# 绘制中空的散点图并拟合一条直线
+<h1 id="绘制中空的散点图并拟合一条直线">绘制中空的散点图并拟合一条直线</h1>
 
-highlight:
+<p>highlight:</p>
 
-- linear fitting curves
-- scatters without filling colors
+<ul>
+  <li>linear fitting curves</li>
+  <li>scatters without filling colors</li>
+</ul>
 
-```
-# 首先定义计算R2的函数
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 首先定义计算R2的函数
 def r2_plot(x, y):
     mod = LinearRegression()
     mod.fit(np.array(x).reshape(-1,1), np.array(y).reshape(-1,1))
@@ -246,19 +242,20 @@ ax.set_ylabel(r'$S^{exp}_{total}~(J\cdot mol^{-1}K^{-1})$',fontsize=18,fontfamil
 #ax.legend(fontsize=14)
 
 plt.savefig('Entropy_vs_logP/entropy_vs_logp.png',dpi=1000,bbox_inches='tight')
-```
+</code></pre></div></div>
 
 <div align="center">
-<img src="{{site.url}}/assets/2022_python_plot/image.png" width = "800" height = "" alt="scatter"/>
+<img src="/assets/2022_python_plot/image.png" width="800" height="" alt="scatter" />
  </div>
 
-# 绘制雷达图
+<h1 id="绘制雷达图">绘制雷达图</h1>
 
-highlights:
- - radar plot
+<p>highlights:</p>
+<ul>
+  <li>radar plot</li>
+</ul>
 
-```
-# importing package
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># importing package
 from logp.io.elem_filter import filt_elems   # function written by myself
 from logp.zq.utils.element_count import get_element
 import os, warnings
@@ -368,7 +365,7 @@ ax2.fill(theta,hist_physprop,color='b',alpha=0.3)
 ax2.plot(theta,hist_martel,'ro:',ms=5,label='Martel')
 ax2.fill(theta,hist_martel,color='r',alpha=0.3)
 
-ax2.plot(theta,hist_star,color='cyan',marker='o',ls=':',ms=5,label='Star & NonStar')
+ax2.plot(theta,hist_star,color='cyan',marker='o',ls=':',ms=5,label='Star &amp; NonStar')
 ax2.fill(theta,hist_star,color='cyan',alpha=0.3)
 
 ax2.plot(theta,hist_huuskonen,color='green',marker='o',ls=':',ms=5,label='Huuskonen')
@@ -383,21 +380,22 @@ ax2.fill(theta,hist_solv,color='pink',alpha=0.3)
 plt.legend(bbox_to_anchor=(1.1, 0.85), loc=2, borderaxespad=0,fontsize=16)
 plt.tight_layout()
 plt.savefig('elem_counts/6_datasets_radar_logp_distribution.png',dpi=1000,bbox_inches='tight')
-```
+</code></pre></div></div>
 
 <div align="center">
-<img src="{{site.url}}/assets/2022_python_plot/radar.png" width = "800" height = "" alt="radar"/>
+<img src="/assets/2022_python_plot/radar.png" width="800" height="" alt="radar" />
  </div>
 
-# 描述符重要性饼状图
+<h1 id="描述符重要性饼状图">描述符重要性饼状图</h1>
 
- highlights:
- - 饼状图；
- - 重要性按照比重排序；
- - 重要性按照比重进行了分类
+<p>highlights:</p>
+<ul>
+  <li>饼状图；</li>
+  <li>重要性按照比重排序；</li>
+  <li>重要性按照比重进行了分类</li>
+</ul>
 
-```
-# importing the package
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># importing the package
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -415,9 +413,9 @@ pie_mdi_sorted = pie_mdi.sort_values(by=['classify','pop'])
 # initial the setting
 fig, ax = plt.subplots(figsize=(10,6),subplot_kw=dict(aspect='equal'))
 def my_autopct(pct):
-    return ('%.2f%%' %pct) if pct > 4 else ''
+    return ('%.2f%%' %pct) if pct &gt; 4 else ''
 
-labels = [n if v > pie_mdi_sorted['pop'].sum() *0.04 else ''
+labels = [n if v &gt; pie_mdi_sorted['pop'].sum() *0.04 else ''
              for n,v in zip(pie_mdi_sorted['name'],pie_mdi_sorted['pop'])]
 
 ax.pie(pie_mdi_sorted['pop'],labels=labels,
@@ -431,25 +429,25 @@ ax.pie([mdi_charge_sum,mdi_other_sum],labels=['Charge','Other'],
 
 plt.tight_layout()
 plt.savefig('rf_feature_importance_pie.png',dpi=1000,bbox_inches='tight')
-```
+</code></pre></div></div>
 
 <div align="center">
-<img src="{{site.url}}/assets/2022_python_plot/rf_feature_importance_pie.png" width = "600" height = "" alt="pie"/>
+<img src="/assets/2022_python_plot/rf_feature_importance_pie.png" width="600" height="" alt="pie" />
  </div>
 
- data: [rf_mdi_importance.csv]({{site.url}}/assets/2022_python_plot/rf_mdi_importance.csv)
+<p>data: <a href="/assets/2022_python_plot/rf_mdi_importance.csv">rf_mdi_importance.csv</a></p>
 
+<h1 id="将原子的权重map到分子的二维结构上">将原子的权重map到分子的二维结构上</h1>
 
-# 将原子的权重map到分子的二维结构上
- 
- highlights:
+<p>highlights:</p>
 
- - 背景设成白色；
- - 添加边框；
- - 抹去XY相关信息
+<ul>
+  <li>背景设成白色；</li>
+  <li>添加边框；</li>
+  <li>抹去XY相关信息</li>
+</ul>
 
-```
- #from logp.sf_behler.sf import get_charge
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> #from logp.sf_behler.sf import get_charge
 #from logp.sf_behler.g3D import XYZ_dict
 #from logp.sf_behler.sf import sum_G1
 #from logp.sf_behler.sf import sum_G2
@@ -472,21 +470,22 @@ plt.xticks([])
 plt.yticks([])
 
 fig1.savefig('SF_figures/water_q.png',bbox_inches='tight') #如果是在jupyter中运行的话一定要加上关键词bbox_inches，不然图片显示不完全
-```
+</code></pre></div></div>
 
 <div align="center">
-<img src="{{site.url}}/assets/2022_python_plot/bg_white_water_q.png" width = "600" height = "" alt="water"/>
+<img src="/assets/2022_python_plot/bg_white_water_q.png" width="600" height="" alt="water" />
  </div>
 
-# 散点图+统计分布图在侧边
+<h1 id="散点图统计分布图在侧边">散点图+统计分布图在侧边</h1>
 
-highlights:
+<p>highlights:</p>
 
-- 多图绘制；
-- 绘制散点图的同时，将分布图分布在两个坐标轴上；
+<ul>
+  <li>多图绘制；</li>
+  <li>绘制散点图的同时，将分布图分布在两个坐标轴上；</li>
+</ul>
 
-```
-fig = plt.figure(figsize=(12,8))  # 创建画布
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fig = plt.figure(figsize=(12,8))  # 创建画布
 
 #ax1 = plt.subplot(2,3,1)
 
@@ -603,7 +602,7 @@ main_axes4 = fig.add_subplot(Grid[9:,16:23],yticklabels=[])
 y_hist4 = fig.add_subplot(Grid[9:,23],xticklabels=[],sharey=main_axes4)
 x_hist4 = fig.add_subplot(Grid[8,16:23],yticklabels=[],sharex=main_axes4)
 
-main_axes4.scatter(star_rmsds,star_rot,color='none', marker='o', edgecolor='green',label='Star & Non-Star')
+main_axes4.scatter(star_rmsds,star_rot,color='none', marker='o', edgecolor='green',label='Star &amp; Non-Star')
 x_hist4.hist(star_rmsds,bins=40, histtype='stepfilled',orientation='vertical',color='green',density=1.0)
 y_hist4.hist(star_rot,bins=40, histtype='stepfilled',orientation='horizontal',color='green',density=1.0)
 
@@ -638,9 +637,9 @@ main_axes4.set_xlabel('RMSD (nm)',fontsize=14,fontfamily='sans-serif',fontstyle=
 #
 #plt.tight_layout()
 plt.savefig('RMSD_figures/RMSD_rot_bonds_distribution.png',dpi=1000)
-```
-
+</code></pre></div></div>
 
 <div align="center">
-<img src="{{site.url}}/assets/2022_python_plot/RMSD_rot_bonds_distribution.png" width = "1000" height = "" alt="rmsd"/>
+<img src="/assets/2022_python_plot/RMSD_rot_bonds_distribution.png" width="1000" height="" alt="rmsd" />
  </div>
+:ET
