@@ -1,4 +1,4 @@
-I"�H<!--
+I"�b<!--
  >Theory and Computational Biology: From Molecular to System
 -->
 <!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
@@ -10,7 +10,7 @@
 </code></pre></div>  </div>
 </blockquote>
 
-<p>终于将预测脂水分配系数的工具投出去了，腾出部分时间来进行相关的总结了。（我把<a href="/assets/2022_python_plot/MS.pdf">Manuscript</a>和<a href="/assets/2022_python_plot/SI.pdf">Supprotin information</a>也一起放在这篇博客的后面，感兴趣的朋友可以取用，如果能引用就更加欢迎了！）</p>
+<p>终于将预测脂水分配系数的工具投出去了，腾出部分时间来进行相关的总结了。（我把<a href="/assets/2022_python_plot/MS.pdf">Manuscript</a>和<a href="/assets/2022_python_plot/SI.pdf">Supporting information</a>也一起放在这篇博客的后面，感兴趣的朋友可以取用，如果能引用就更加欢迎了！）</p>
 
 <p>上次做完组会报告，隔壁实验室的师弟问我要了ppt说是想学习下我的作图，心中暗想自己的作图居然能得到部分认可，本着授之以鱼，不如授之以渔的观念，我干脆把我作图用到的脚本也全都online吧，一来可以做个科研记录，二来如果对志同道合的朋友有所帮助岂不美哉！</p>
 
@@ -174,7 +174,7 @@ mol scaleminmax $id 1 $colorlow $colorhigh
 </ol>
 
 <div align="center">
-<img src="/assets/2022_python_plot/examplt_esp.png" width="500" height="" alt="esp" />
+<img src="/assets/2022_python_plot/example_esp.png" width="500" height="" alt="esp" />
  </div>
 
 <p>script:<a href="/assets/2022_python_plot/ESPiso.vmd">ESPiso.vmd</a></p>
@@ -435,7 +435,7 @@ plt.savefig('rf_feature_importance_pie.png',dpi=1000,bbox_inches='tight')
 <img src="/assets/2022_python_plot/rf_feature_importance_pie.png" width="600" height="" alt="pie" />
  </div>
 
-<p>data: <a href="/assets/2022_python_plot/rf_feature_importance.csv">rf_mdi_importance.csv</a></p>
+<p>data: <a href="/assets/2022_python_plot/rf_mdi_importance.csv">rf_mdi_importance.csv</a></p>
 
 <h1 id="将原子的权重map到分子的二维结构上">将原子的权重map到分子的二维结构上</h1>
 
@@ -476,4 +476,170 @@ fig1.savefig('SF_figures/water_q.png',bbox_inches='tight') #如果是在jupyter�
 <img src="/assets/2022_python_plot/bg_white_water_q.png" width="600" height="" alt="water" />
  </div>
 
+<h1 id="散点图统计分布图在侧边">散点图+统计分布图在侧边</h1>
+
+<p>highlights:</p>
+
+<ul>
+  <li>多图绘制；</li>
+  <li>绘制散点图的同时，将分布图分布在两个坐标轴上；</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fig = plt.figure(figsize=(12,8))  # 创建画布
+
+#ax1 = plt.subplot(2,3,1)
+
+Grid = plt.GridSpec(16,24,hspace=0.2,wspace=0.2)      #确定哪些grid用来绘图，哪些区间是空缺状态
+main_axes1 = fig.add_subplot(Grid[1:8,0:7],xticklabels=[])
+y_hist1 = fig.add_subplot(Grid[1:8,7],xticklabels=[],sharey=main_axes1)
+x_hist1 = fig.add_subplot(Grid[0,0:7],yticklabels=[],sharex=main_axes1)
+
+main_axes1.scatter(physprop_rmsds,physprop_rot,color='none', marker='o', edgecolor='blue',label='PhysProp')
+x_hist1.hist(physprop_rmsds,bins=40, histtype='stepfilled',orientation='vertical',color='blue',density=1.0)
+y_hist1.hist(physprop_rot,bins=40, histtype='stepfilled',orientation='horizontal',color='blue',density=1.0)
+
+x_hist1.tick_params(axis='x',labelbottom=False)
+y_hist1.tick_params(axis='y',labelleft=False)
+
+x_hist1.spines['right'].set_visible(False)
+x_hist1.spines['left'].set_visible(False)
+x_hist1.spines['top'].set_visible(False)
+x_hist1.yaxis.set_ticks([])
+x_hist1.xaxis.set_ticks([])
+
+y_hist1.spines['right'].set_visible(False)
+y_hist1.spines['bottom'].set_visible(False)
+y_hist1.spines['top'].set_visible(False)
+y_hist1.yaxis.set_ticks([])
+y_hist1.xaxis.set_ticks([])
+
+main_axes1.legend(fontsize=14)
+main_axes1.set_xlim(-0.05,0.8)
+main_axes1.set_ylim(-1,36)
+
+
+#main_axes1.xaxis.set_ticks(np.arange(-0.0,0.81,0.2))
+main_axes1.yaxis.set_ticks(np.arange(0,37,6))
+main_axes1.xaxis.set_ticks([])
+
+main_axes1.xaxis.set_tick_params(labelsize=14)
+main_axes1.yaxis.set_tick_params(labelsize=14)
+
+main_axes1.set_ylabel('Number of Rotatable Bonds',fontsize=14,fontfamily='sans-serif',fontstyle='italic')
+
+main_axes2 = fig.add_subplot(Grid[9:,0:7])
+y_hist2 = fig.add_subplot(Grid[9:,7],xticklabels=[],sharey=main_axes2)
+x_hist2 = fig.add_subplot(Grid[8,0:7],yticklabels=[],sharex=main_axes2)
+
+main_axes2.scatter(martel_rmsds,martel_rot,color='none', marker='o', edgecolor='red',label='Martel')
+x_hist2.hist(martel_rmsds,bins=40, histtype='stepfilled',orientation='vertical',color='red',density=1.0)
+y_hist2.hist(martel_rot,bins=40, histtype='stepfilled',orientation='horizontal',color='red',density=1.0)
+
+x_hist2.tick_params(axis='x',labelbottom=False)
+y_hist2.tick_params(axis='y',labelleft=False)
+
+x_hist2.spines['right'].set_visible(False)
+x_hist2.spines['left'].set_visible(False)
+x_hist2.spines['top'].set_visible(False)
+x_hist2.yaxis.set_ticks([])
+x_hist2.xaxis.set_ticks([])
+
+y_hist2.spines['right'].set_visible(False)
+y_hist2.spines['bottom'].set_visible(False)
+y_hist2.spines['top'].set_visible(False)
+y_hist2.yaxis.set_ticks([])
+y_hist2.xaxis.set_ticks([])
+
+main_axes2.legend(fontsize=14)
+main_axes2.set_xlim(-0.05,0.8)
+main_axes2.set_ylim(-1,36)
+
+main_axes2.xaxis.set_ticks(np.arange(-0.0,0.81,0.2))
+main_axes2.yaxis.set_ticks(np.arange(0,37,6))
+
+main_axes2.xaxis.set_tick_params(labelsize=14)
+main_axes2.yaxis.set_tick_params(labelsize=14)
+
+main_axes2.set_xlabel('RMSD (nm)',fontsize=14,fontfamily='sans-serif',fontstyle='italic')
+main_axes2.set_ylabel('Number of Rotatable Bonds',fontsize=14,fontfamily='sans-serif',fontstyle='italic')
+
+
+main_axes3 = fig.add_subplot(Grid[9:,8:15],yticklabels=[])
+y_hist3 = fig.add_subplot(Grid[9:,15],xticklabels=[],sharey=main_axes3)
+x_hist3 = fig.add_subplot(Grid[8,8:15],yticklabels=[],sharex=main_axes3)
+
+main_axes3.scatter(huuskonen_rmsds,huuskonen_rot,color='none', marker='o', edgecolor='cyan',label='Huuskonen')
+x_hist3.hist(huuskonen_rmsds,bins=40, histtype='stepfilled',orientation='vertical',color='cyan',density=1.0)
+y_hist3.hist(huuskonen_rot,bins=40, histtype='stepfilled',orientation='horizontal',color='cyan',density=1.0)
+
+x_hist3.tick_params(axis='x',labelbottom=False)
+y_hist3.tick_params(axis='y',labelleft=False)
+
+x_hist3.spines['right'].set_visible(False)
+x_hist3.spines['left'].set_visible(False)
+x_hist3.spines['top'].set_visible(False)
+x_hist3.yaxis.set_ticks([])
+x_hist3.xaxis.set_ticks([])
+
+y_hist3.spines['right'].set_visible(False)
+y_hist3.spines['bottom'].set_visible(False)
+y_hist3.spines['top'].set_visible(False)
+y_hist3.yaxis.set_ticks([])
+y_hist3.xaxis.set_ticks([])
+
+main_axes3.legend(fontsize=14)
+main_axes3.set_xlim(-0.05,0.8)
+main_axes3.set_ylim(-1,36)
+
+main_axes3.xaxis.set_ticks(np.arange(-0.0,0.81,0.2))
+main_axes3.yaxis.set_ticks(np.arange(0,37,6))
+
+main_axes3.xaxis.set_tick_params(labelsize=14)
+main_axes3.yaxis.set_tick_params(labelsize=14)
+main_axes3.set_xlabel('RMSD (nm)',fontsize=14,fontfamily='sans-serif',fontstyle='italic')
+
+main_axes4 = fig.add_subplot(Grid[9:,16:23],yticklabels=[])
+y_hist4 = fig.add_subplot(Grid[9:,23],xticklabels=[],sharey=main_axes4)
+x_hist4 = fig.add_subplot(Grid[8,16:23],yticklabels=[],sharex=main_axes4)
+
+main_axes4.scatter(star_rmsds,star_rot,color='none', marker='o', edgecolor='green',label='Star &amp; Non-Star')
+x_hist4.hist(star_rmsds,bins=40, histtype='stepfilled',orientation='vertical',color='green',density=1.0)
+y_hist4.hist(star_rot,bins=40, histtype='stepfilled',orientation='horizontal',color='green',density=1.0)
+
+x_hist4.tick_params(axis='x',labelbottom=False)
+y_hist4.tick_params(axis='y',labelleft=False)
+
+x_hist4.spines['right'].set_visible(False)
+x_hist4.spines['left'].set_visible(False)
+x_hist4.spines['top'].set_visible(False)
+x_hist4.yaxis.set_ticks([])
+x_hist4.xaxis.set_ticks([])
+
+y_hist4.spines['right'].set_visible(False)
+y_hist4.spines['bottom'].set_visible(False)
+y_hist4.spines['top'].set_visible(False)
+y_hist4.yaxis.set_ticks([])
+y_hist4.xaxis.set_ticks([])
+
+main_axes4.legend(fontsize=14)
+main_axes4.set_xlim(-0.05,0.8)
+main_axes4.set_ylim(-1,36)
+
+main_axes4.xaxis.set_ticks(np.arange(-0.0,0.81,0.2))
+main_axes4.yaxis.set_ticks(np.arange(0,37,6))
+
+main_axes4.xaxis.set_tick_params(labelsize=14)
+main_axes4.yaxis.set_tick_params(labelsize=14)
+main_axes4.set_xlabel('RMSD (nm)',fontsize=14,fontfamily='sans-serif',fontstyle='italic')
+
+#fig.text(0.07,0.5,'Number of Rotatable Bonds',va='center',rotation='vertical',fontsize=18,fontfamily='sans-serif',fontstyle='italic')
+#fig.text(0.5,0.05, 'RMSD (nm)',ha='center',fontsize=18,fontfamily='sans-serif',fontstyle='italic')
+#
+#plt.tight_layout()
+plt.savefig('RMSD_figures/RMSD_rot_bonds_distribution.png',dpi=1000)
+</code></pre></div></div>
+
+<div align="center">
+<img src="/assets/2022_python_plot/RMSD_rot_bonds_distribution.png" width="1000" height="" alt="rmsd" />
+ </div>
 :ET
