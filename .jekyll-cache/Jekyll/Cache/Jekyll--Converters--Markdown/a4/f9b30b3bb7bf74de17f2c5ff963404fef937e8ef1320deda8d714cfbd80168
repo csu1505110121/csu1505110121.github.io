@@ -1,0 +1,815 @@
+I"�m<!--
+ >Theory and Computational Biology: From Molecular to System
+-->
+<!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
+> <p align="right">-- Forty Braver </p>
+-->
+
+<blockquote>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>穷则变，变则通，通则久
+</code></pre></div>  </div>
+</blockquote>
+
+<p><strong>本教程是在<code class="language-plaintext highlighter-rouge">CentOS Stream release 9</code>下进行，对于CentOS 7或者其他发行版本的安装一些命令存在差异，本教程仅供参考</strong></p>
+
+<h2 id="先前准备工作">先前准备工作</h2>
+
+<ul>
+  <li>查看当前服务器的系统版本
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; cat /etc/redhat-release 
+CentOS Stream release 9
+</code></pre></div>    </div>
+  </li>
+  <li>本教程中服务器的配置情况</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">name of node</th>
+      <th style="text-align: left">internal ip</th>
+      <th style="text-align: left">external ip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">main node</td>
+      <td style="text-align: left">192.168.1.100</td>
+      <td style="text-align: left">100.xxx.xxx.x</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">comput node01</td>
+      <td style="text-align: left">192.168.1.1</td>
+      <td style="text-align: left">-</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">comput node02</td>
+      <td style="text-align: left">192.168.1.2</td>
+      <td style="text-align: left">-</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">comput node03</td>
+      <td style="text-align: left">192.168.1.3</td>
+      <td style="text-align: left">-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>其中主节点<code class="language-plaintext highlighter-rouge">main node</code>存在着两个网卡，一个网卡(姑且叫做<code class="language-plaintext highlighter-rouge">eno01</code>)直接连接着外网进行互联网的访问，另一个网卡(<code class="language-plaintext highlighter-rouge">eno02</code>)进行内部网络的访问和转发。对于计算节点并没有多个网卡的需要，只需要有一个网卡就行。对于内部网络本教程中设定的是<code class="language-plaintext highlighter-rouge">192.168.1.x</code>的网段，这个大家可以随便设定，但是保证所有服务器都是在同一个网段下即可。譬如，该内网内部的计算节点的ip就设定为<code class="language-plaintext highlighter-rouge">192.168.1.1</code>~<code class="language-plaintext highlighter-rouge">192.168.1.3</code>。</p>
+
+<h2 id="集群的搭建">集群的搭建</h2>
+
+<ul>
+  <li>系统OS的安装</li>
+</ul>
+
+<p>和安装普通机器一样，集群中的机器都需要事先安装好对应的系统，关于机器硬盘的分区，本教程采用如下的规划：</p>
+
+<ol>
+  <li>主节点的分区配置 (总过14 Tb)</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">partition name</th>
+      <th style="text-align: left">size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">swap</td>
+      <td style="text-align: left">2048 Mib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/boot</td>
+      <td style="text-align: left">1024 Mib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/boot/efi (取决于用什么方式安装)</td>
+      <td style="text-align: left">1024 Mib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/var</td>
+      <td style="text-align: left">2048 Mib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/</td>
+      <td style="text-align: left">300 Gib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/home</td>
+      <td style="text-align: left">13.78 Tib</td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>计算节点的分区配置 (最多700 Gb)</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">partition name</th>
+      <th style="text-align: left">size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">swap</td>
+      <td style="text-align: left">2048 Mib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/boot</td>
+      <td style="text-align: left">1024 Mib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/boot/efi (取决于用什么方式安装)</td>
+      <td style="text-align: left">1024 Mib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/var</td>
+      <td style="text-align: left">2048 Mib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/</td>
+      <td style="text-align: left">30 Gib</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/home</td>
+      <td style="text-align: left">650 Gib</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>网络的配置</li>
+</ul>
+
+<p>配置动态ip和静态ip，因为<code class="language-plaintext highlighter-rouge">CentOS 9</code>和<code class="language-plaintext highlighter-rouge">CentOS 7</code>的网卡管理地址发生了变化，安装在<code class="language-plaintext highlighter-rouge">CentOS 7</code>的小伙伴这里需要额外注意下</p>
+
+<ol>
+  <li>主节点的网络配置</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /etc/NetworkManager/system-connections/eno02 (eno02就是用来管理内部ip的网口)
+
+[ipv4]
+method=manual      (改为手动，不让其自动获取ip)
+address=192.168.1.100   （设置为指定的ip）
+network=192.168.20.0     （保证该网段下的机器都能够互相通信）
+netmask=255.255.255.0
+
+</code></pre></div></div>
+
+<ol>
+  <li>计算节点网络配置</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /etc/NetworkManager/system-connections/eno01 (eno01用来获取ip的网口)
+
+[ipv4]
+method=manual      (改为手动，不让其自动获取ip)
+address=192.168.1.1   （设置为指定的ip）
+gateway=192.168.20.100  (保证后续该内部结点可以通过主节点来进行外网的访问）
+netmask=255.255.255.0
+</code></pre></div></div>
+
+<p>网卡配置的更新和网口的启动 (CentOS 9和CentOS 7发行版本的另一个重要区别)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmcli c reload (配置的重载)
+nmcli c up etho_name (网口的启动，譬如主节点想要启动eno02，就直接nmcli c up eno02)
+</code></pre></div></div>
+
+<ul>
+  <li>内网访问互联网 (主要是为了后续服务器库更新的方便)</li>
+</ul>
+
+<p>利用<code class="language-plaintext highlighter-rouge">iptables</code>进行转发，使得计算节点可以直接访问外部的互联网，相关的内容可以看我前篇<a href="https://csu1505110121.github.io/linux/2019/07/27/Network-Configuration.html">博客</a></p>
+
+<p><strong><em>只需要在主节点上进行相关配置</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 主节点配置(可以访问internet的节点配置)
+1. 配置内核参数
+## /etc/sysctl.conf ##
+net.ipv4.ip_forward = 1
+
+2. 配置SNAT防火墙映射
+vim /opt/iptable.sh
+
+# 添加如下路由规则
+
+iptables -F
+iptables -X
+
+# share the internet
+iptables -t nat -A POSTROUTING -s 192.168.20.0/24 (内网网段) -j SNAT --to-source 主节点上动态的ip网址(可以从外网访问的网址)
+</code></pre></div></div>
+
+<p><strong><em>只需要在计算节点上执行</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 内部结点配置
+1. 配置默认网关到主节点，dns设置为8.8.8.8 让其可以解析域名
+ip route add default via 192.168.xxx.xxx (主节点的对内网ip)
+echo "nameserver 8.8.8.8" &gt; /etc/resolv.conf
+</code></pre></div></div>
+
+<ul>
+  <li>节点间进行无密传输(主要是为了后续传输文件方便) 可以看我另一篇<a href="https://csu1505110121.github.io/linux/2020/10/28/SSH-KEYGEN.html">博客</a></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 生成密钥
+ssh-keygen 
+
+# 将公钥传输到各个计算节点上
+ssh-copy-id node1
+## 会要求输入node1上对应的密码，后续再登录node1就不再需要密码了
+</code></pre></div></div>
+
+<h2 id="slurm服务相关软件的安装">Slurm服务相关软件的安装</h2>
+
+<h3 id="安装用到的软件和对应的版本号">安装用到的软件和对应的版本号</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">software</th>
+      <th style="text-align: left">version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">munge</td>
+      <td style="text-align: left">0.5.15</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">slurm</td>
+      <td style="text-align: left">23.02.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">hwloc</td>
+      <td style="text-align: left">2.8.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">libevent</td>
+      <td style="text-align: left">2.1.12-stable</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pmix</td>
+      <td style="text-align: left">4.2.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ucx</td>
+      <td style="text-align: left">1.14.0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">openmpi</td>
+      <td style="text-align: left">4.1.5</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>一些依赖库的安装</li>
+</ul>
+
+<p><strong><em>主节点和计算节点都进行安装以下的库文件</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum install openssl openssl-devel g++ gcc python3-pip openssh-server cmake 
+</code></pre></div></div>
+
+<p><strong><em>主节点需多安装mariadb数据库包</em></strong></p>
+
+<p>这里不使用mysql库，是因为centos上更加兼容mariadb数据包</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum install mariadb mariadb-server
+</code></pre></div></div>
+
+<ul>
+  <li>主节点数据库的启用</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mariadb数据库的激活和启用
+
+systemctl start mariadb
+systemctl enable mariadb
+
+## 数据库的安装
+mysql_secure_installation （按照提示一步步走完就行）
+</code></pre></div></div>
+
+<p>修改数据库的配置文件</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>创建/etc/my.cnf.d/innodb.cnf并添加以下内容
+
+[mysqld]
+ innodb_buffer_pool_size=1024M
+ innodb_log_file_size=64M
+ innodb_lock_wait_timeout=900
+</code></pre></div></div>
+
+<p>重新启用数据库服务</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl stop mariadb
+systemctl start mariadb
+</code></pre></div></div>
+
+<p>创建并配置<code class="language-plaintext highlighter-rouge">slurm_acc_db</code>数据库</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mysql -u root -p
+ mysql&gt; grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'some_pass' with grant option;  (some_pass自行进行修改)
+ mysql&gt; create database slurm_acct_db;
+</code></pre></div></div>
+
+<h3 id="munge的编译">munge的编译</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 解压munge软件安装包
+tar xf munge-0.5.15.tar.xz
+
+cd munge-0.5.15
+
+# 安装目录 /usr/local/munge-0.5.15
+# 后续的软件都安装到/usr/local中并用软连接进行链接
+
+./configure --prefix=/usr/local/munge-0.5.15
+
+make -j 4 &amp;&amp; make -j 4 install (4是cpu核心数)
+
+cd /usr/local &amp;&amp; ln -s munge-0.5.15 munge
+</code></pre></div></div>
+
+<p>添加环境变量</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /etc/profile.d/munge.sh
+
+export MUNGE_HOME=/usr/local/munge
+export PATH=$MUNGE_HOME/bin:$PATH
+export PATH=$MUNGE_HOME/sbin:$PATH
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 立即生效
+source /etc/profile.d/munge.sh
+</code></pre></div></div>
+
+<h3 id="编译pmix">编译pmix</h3>
+
+<p>在编译<code class="language-plaintext highlighter-rouge">pmix</code>前需要事先编译<code class="language-plaintext highlighter-rouge">hwloc</code>和<code class="language-plaintext highlighter-rouge">libevent</code>，编译步骤如下</p>
+
+<ul>
+  <li>编译<code class="language-plaintext highlighter-rouge">hwloc</code></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 解压hwloc
+tar xvf hwloc-2.8.0.tar.bz2
+
+cd hwloc-2.8.0
+
+# 安装目录 /usr/local/hwloc-2.8.0
+./configure --prefix=/usr/local/hwloc-2.8.0
+
+make -j 4 &amp;&amp; make -j 4 install (4是cpu核心数)
+
+cd /usr/local &amp;&amp; ln -s hwloc-2.8.0 hwloc
+</code></pre></div></div>
+
+<ul>
+  <li>编译<code class="language-plaintext highlighter-rouge">libevent</code></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 解压libevent
+tar xf libevent-2.1.12-stable.tar.gz
+
+cd libevent-2.1.12-stable
+
+# 安装目录 /usr/local/libevent-2.1.12
+./configure --prefix=/usr/local/libevent-2.1.12
+
+make -j 4 &amp;&amp; make -j 4 install (4是cpu核心数)
+
+cd /usr/local &amp;&amp; ln -s libevent-2.1.12 libevent
+</code></pre></div></div>
+
+<ul>
+  <li>最后编译<code class="language-plaintext highlighter-rouge">pmix</code></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 解压pmix
+tar xf pmix-4.2.3.tar.bz2
+
+cd pmix-4.2.3
+
+# 必须置顶刚才的两个依赖路径，因为我把他们单独放在一个文件夹了，方便以后更新、删除
+./configure --prefix=/usr/local/pmix-4.2.3  --with-libevent=/usr/local/libevent --with-hwloc=/usr/local/hwloc
+
+make -j 4 &amp;&amp; make -j 4 install (4是cpu核心数)
+
+cd /usr/local &amp;&amp; ln -s pmix-4.2.3 pmix
+</code></pre></div></div>
+
+<h3 id="编译openmpi">编译openmpi</h3>
+
+<ul>
+  <li>先安装<code class="language-plaintext highlighter-rouge">ucx</code>包</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 解压ucx安装包
+tar xf ucx-1.14.0.tar.gz
+
+cd ucx-1.14.0
+
+./configure --prefix=/usr/local/ucx-1.14.0
+
+make -j 4 &amp;&amp; make -j 4 install 
+
+cd /usr/local &amp;&amp; ln -s ucx-1.14.0 ucx
+</code></pre></div></div>
+
+<ul>
+  <li>openmpi编译安装</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 解压openmpi安装包
+tar xf openmpi-4.1.5.tar.bz2
+
+cd openmpi-4.1.5
+
+# 必须设定上述编译的库依赖路径，因为我把他们单独放在一个文件夹了，方便以后更新、删除
+./configure --prefix=/usr/local/openmpi-4.1.5 --with-pmix=/usr/local/pmix --with-ucx=/usr/local/ucx --with-hwloc=/usr/local/hwloc --with-libevent=/usr/local/libevent
+
+make -j 4 &amp;&amp; make -j 4 install
+
+cd /usr/local &amp;&amp; ln -s openmpi-4.1.5 openmpi
+</code></pre></div></div>
+
+<p>添加环境变量</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /etc/profile.d/openmpi.sh
+
+export OPENMPI_HOME=/usr/local/openmpi
+export PATH=$OPENMPI_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$OPENMPI_HOME/lib:$LD_LIBRARY_PATH
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 立即生效
+source /etc/profile.d/openmpi.sh
+</code></pre></div></div>
+
+<h3 id="编译slurm">编译slurm</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 解压slurm安装包
+tar xf slurm-23.02.2.tar.bz2
+
+cd slurm-23.03.2
+
+# 设置上述安装的库的软件包，因为我把他们单独放在一个文件夹了，方便以后更新、删除
+./configure --prefix=/usr/local/slurm-23.02.2 --with-pmix=/usr/local/pmix --with-munge=/usr/local/munge --with-hwloc=/usr/local/hwloc --with-ucx=/usr/local/ucx
+
+make -j 4 &amp;&amp; make -j 4 install
+
+cd /usr/local &amp;&amp; ln -s slurm-23.02.2 slurm
+</code></pre></div></div>
+
+<p>添加环境变量</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /etc/profile.d/slurm.sh
+
+export SLURM_HOME=/usr/local/slurm
+export PATH=$SLURM_HOME/bin:$PATH
+export PATH=$SLURM_HOME/sbin:$PATH
+export LD_LIBRARY_PATH=$SLURM_HOME/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$SLURM_HOME/lib/slurm:$LD_LIBRARY_PATH
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 立即生效
+source /etc/profile.d/slurm.sh
+</code></pre></div></div>
+
+<h2 id="打开munge服务和slurm服务连通主节点和计算节点">打开munge服务和slurm服务，连通主节点和计算节点</h2>
+
+<ul>
+  <li>munge key的产生</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 主节点munge key的产生
+mungekey # 相应的munge.key文件会产生在 /usr/local/munge/etc/munge文件夹下
+
+# munge key的分发
+# 将主节点上的key分发到内部的计算节点上
+
+scp /usr/local/munge/etc/munge/munge.key root@comput-node:/usr/local/munge/etc/munge
+</code></pre></div></div>
+
+<ul>
+  <li>查看munge是否正常运行 (<strong><em>主节点和计算节点都需要开启</em></strong>)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>munged
+
+(应该会报 failed to check socket dir)
+解决方案：
+手动创建 /usr/local/munge/var/run/munge
+
+# 查看是否有报错，没有error就行
+cat /usr/local/munge/var/log/munge/munged.log
+
+
+# 查看是否是munge相关的进程
+ps aux | grep munge
+</code></pre></div></div>
+
+<ul>
+  <li>开启slurmdbd (<strong><em>只需要主节点上运行</em></strong>)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>slurmdbd
+
+# 查看是否有报错，你启动以后的时间里没有error就行，之前的error没事
+cat /var/log/slurmdbd.log
+
+# 查看是否有相关进程
+ps aux | grep slurmdbd
+
+</code></pre></div></div>
+
+<ul>
+  <li>开启slurmctld (<strong><em>只需要主节点上运行</em></strong>)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>slurmctld
+
+# 查看是否有报错，你启动以后的时间里没有error就行，之前的error没事
+cat /var/log/slurmctld.log
+
+# 过几秒再看看，是否有问题
+ps aux | grep slurmctld
+</code></pre></div></div>
+
+<ul>
+  <li>创建<code class="language-plaintext highlighter-rouge">slurmdbd.conf</code>数据库相关的文件 (<strong><em>只需要主节点设置</em></strong>)</li>
+</ul>
+
+<p>文件放置在<code class="language-plaintext highlighter-rouge">/usr/local/slurm/etc/slurmdbd.conf</code>，需要手动创建</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ArchiveEvents=yes
+ArchiveJobs=yes
+ArchiveResvs=yes
+ArchiveSteps=no
+ArchiveSuspend=no
+ArchiveTXN=no
+ArchiveUsage=no
+AuthInfo=/usr/local/munge/var/run/munge/munge.socket.2
+AuthType=auth/munge   (着重注意)
+DbdHost=localhost     (主节点)
+DebugLevel=info
+PurgeEventAfter=1month
+PurgeJobAfter=12month
+PurgeResvAfter=1month
+PurgeStepAfter=1month
+PurgeSuspendAfter=1month
+PurgeTXNAfter=12month
+PurgeUsageAfter=24month
+LogFile=/var/log/slurmdbd.log
+PidFile=/var/run/slurmdbd.pid
+SlurmUser=root        (follow 别人的就没有设定slurm用户了)
+StoragePass=12345678
+StorageType=accounting_storage/mysql  (如果这个报错，我看了下是没有对应的so文件，我就直接使用的是accounting_storage/none)
+StorageUser=slurm
+StorageHost=localhost (主节点)
+StoragePort=3306
+</code></pre></div></div>
+
+<ul>
+  <li>创建并配置<code class="language-plaintext highlighter-rouge">slurm.conf</code>文件 (<strong>主节点和计算节点上都需要配置，且文件需要一致</strong>)</li>
+</ul>
+
+<p>文件放置在<code class="language-plaintext highlighter-rouge">/usr/local/slurm/etc/slurm.conf</code>，需要手动创建</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>; 单机就是 localhost即可
+SlurmctldHost=localhost
+
+; 这个是mpi的默认值，用户输入 --mpi=mpix_v3 这时候会覆盖这个
+MpiDefault=pmix
+
+; 这个优先用cgroup，如果报错，换这个
+ProctrackType=proctrack/linuxproc
+
+; 下面这些都是数据库相关的，配置一下就行
+AccountingStorageHost=localhost
+; 合格是munge的位置
+AccountingStoragePass=/usr/local/munge/var/run/munge/munge.socket.2
+AccountingStorageType=accounting_storage/slurmdbd
+AccountingStorageUser=slurm
+JobCompHost=localhost
+JobCompLoc=slurm_job_db
+JobCompPass=12345678
+JobCompType=jobcomp/mysql
+JobCompUser=slurm
+
+; 这个是各个计算节点，单机的话直接 localhost就行，至于CPUs就是你的cpu核心数，错了也没事，一会开启时会有提示应该是多少，Sockets，cpu插槽数；CoresPerSocket每个插槽多少核心，ThreadsPerCore每个核心多少线程， RealMemory内存（不设置的话，用户申请--mem会报错）
+NodeName=localhost CPUs=6 Sockets=1 CoresPerSocket=6 ThreadsPerCore=1 RealMemory=32041 State=UNKNOWN
+PartitionName=ptt1 Nodes=ALL Default=YES MaxTime=INFINITE State=UP
+
+(最后的NodeName和PartitionName根据自己cluster的结构进行设置)
+</code></pre></div></div>
+
+<h2 id="手动添加服务">手动添加服务</h2>
+
+<ul>
+  <li>munge (<strong><em>主节点和计算节点都需要</em></strong>)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#vim /etc/systemd/system/munge.service
+
+# /etc/systemd/system/munge.service
+[Unit]
+Description=MUNGE authentication service
+Documentation=man:munged(8)
+After=network.target
+After=time-sync.target
+
+[Service]
+Type=forking
+EnvironmentFile=-/usr/local/mung/etc/default/munge
+ExecStart=/usr/local/munge/sbin/munged $OPTIONS
+PIDFile=/usr/local/munge/var/run/munge/munged.pid
+RuntimeDirectory=munge
+RuntimeDirectoryMode=0755
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<ul>
+  <li>slurmdbd (<strong>只有主节点需要</strong>)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># vim /etc/systemd/system/slurmdbd.service
+
+# /lib/systemd/system/slurmdbd.service
+[Unit]
+Description=Slurm DBD accounting daemon
+After=network.target munge.service network-online.target mysql.service
+Wants=munge.service network-online.target mysql.service
+ConditionPathExists=/usr/local/slurm/etc/slurmdbd.conf
+Documentation=man:slurmdbd(8)
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/slurmdbd
+ExecStart=/usr/local/slurm/sbin/slurmdbd -D $SLURMDBD_OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+PIDFile=/var/run/slurmdbd.pid
+LimitNOFILE=65536
+TasksMax=infinity
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<ul>
+  <li>slurmctld (<strong>只有主节点需要</strong>)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># vim /etc/systemd/system/slurmctld.service
+
+# /lib/systemd/system/slurmctld.service
+[Unit]
+Description=Slurm controller daemon
+After=slurmdbd.service
+Wants=slurmdbd.service
+ConditionPathExists=/usr/local/slurm/etc/slurm.conf
+Documentation=man:slurmctld(8)
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/slurmctld
+ExecStart=/usr/local/slurm/sbin/slurmctld -D $SLURMCTLD_OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+PIDFile=/var/run/slurmctld.pid
+LimitNOFILE=65536
+TasksMax=infinity
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<ul>
+  <li>slurmd (<strong><em>主节点和计算节点都需要</em></strong>)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># /lib/systemd/system/slurmd.service
+[Unit]
+Description=Slurm node daemon
+After=remote-fs.target slurmctld.service
+Wants=slurmctld.service
+ConditionPathExists=/usr/local/slurm/etc/slurm.conf
+Documentation=man:slurmd(8)
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/slurmd
+ExecStart=/usr/local/slurm/sbin/slurmd -D $SLURMD_OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+PIDFile=/var/run/slurmd.pid
+KillMode=process
+LimitNOFILE=131072
+LimitMEMLOCK=infinity
+LimitSTACK=infinity
+Delegate=yes
+TasksMax=infinity
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<h2 id="设置开机启动">设置开机启动</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 主节点
+systemctl enable --now mysql
+systemctl enable --now munge
+systemctl enable --now slurmdbd
+systemctl enable --now slurmctld
+systemctl enable --now slurmd
+
+# 计算节点
+systemctl enable --now munge
+systemctl enable --now slurmd
+</code></pre></div></div>
+
+<h2 id="查看集群">查看集群</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sinfo
+
+# 一般应该是下面的
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+ptt1*        up   infinite      1   idle localhost
+</code></pre></div></div>
+
+<h2 id="可能存在的问题">可能存在的问题</h2>
+
+<ol>
+  <li>计算节点无法连接主节点contorller</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>尝试将firewalld服务关掉然后再重新冲洗slurmd、slurmctld相关服务，将计算节点重新启动下试试
+</code></pre></div></div>
+
+<ol>
+  <li>计算节点的时间戳和主节点的时间戳不一致</li>
+</ol>
+
+<p><strong><em>在计算节点上进行设置</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 利用chrony创建 ntp服务器来进行时间同步
+
+# 编辑 /etc/chrony.conf
+
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (https://www.pool.ntp.org/join.html).
+#pool 2.centos.pool.ntp.org iburst
+server 192.168.xx.xxx iburst （修改ip为主节点的ip）
+
+
+# 打开
+# Allow NTP client access from local network.
+allow 192.168.0.0/16
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 添加对应的规则
+
+$ firewall-cmd --add-service=ntp --permanent
+$ firewall-cmd --reload
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 设置对应的时区
+
+timedatectl list-timezones | grep -E 'America/Los*'
+
+timedatectl set-timezon America/Los_Angeles
+
+# 设置完时区后，强制同步下系统时间
+
+chronyc -a makestep
+
+# 启用NTP时间同步
+timedatectl set-ntp yes
+
+# 校准时间服务器
+chronyc tracking (查看Leap status是否是Normal)
+</code></pre></div></div>
+
+<h2 id="本博客参考的网址">本博客参考的网址</h2>
+
+<ul>
+  <li>
+    <p><a href="https://southgreenplatform.github.io/trainings/hpc/slurminstallation/">Slurm installation</a></p>
+  </li>
+  <li>
+    <p><a href="https://yuhldr.github.io/posts/bfa79f01.html">slurm集群安装与踩坑详解</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linuxprobe.com/centos7-chrony-time.html">Linux Chrony设置服务器集群同步时间</a></p>
+  </li>
+</ul>
+
+:ET
