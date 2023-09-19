@@ -1,0 +1,102 @@
+I"6<!--
+ >Theory and Computational Biology: From Molecular to System
+-->
+<!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
+> <p align="right">-- Forty Braver </p>
+-->
+<h1 id="homebrew简介">Homebrew简介：</h1>
+
+<p>引用<a href="https://brew.sh">官方</a>的一句话：Homebrew是Mac OS 不可或缺的套件管理器。
+Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。</p>
+
+<p>个人觉得，使用Homebrew使得Mac上安装软件和在ubuntu上使用apt-get install 一样便捷！</p>
+
+<p>本来是想新Mac到手，可以继续把我的<a href="https://csu1505110121.github.io">blog</a>经营起来，按照<a href="https://jekyllrb.com">jekyll官网</a>的介绍，使用Mac自带的ruby版本<code class="language-plaintext highlighter-rouge">2.6.0</code>无法正常执行jekyll，想着是不是要将ruby进行升级到<code class="language-plaintext highlighter-rouge">2.7.3</code>进行试一下。</p>
+
+<p>但是截止到这篇blog，homebrew使用原始x86都无法正常安装，本文的安装主要参照一下两篇blog：</p>
+
+<ul>
+  <li><a href="https://www.dbform.com/2020/11/30/how-to-install-native-homebrew-on-an-apple-silicon-m1-mac/">https://www.dbform.com/2020/11/30/how-to-install-native-homebrew-on-an-apple-silicon-m1-mac/</a></li>
+  <li><a href="https://blog.csdn.net/csdn2314/article/details/110952637">https://blog.csdn.net/csdn2314/article/details/110952637</a></li>
+</ul>
+
+<h1 id="homebrew在2020-mac-m1-silicon上的安装方法">Homebrew在2020 Mac M1 silicon上的安装方法</h1>
+<p>要在Apple Silicon M1上安装homebrew有两种方法：</p>
+
+<ul>
+  <li><strong>第一种：</strong> 在Rosetta 2下安装x86架构的Homebrew <em>（本人没有亲自尝试）</em>，主要原理是使用Rosetta的转码功能，还是直接安装x86架构的Homebrew，后续通过这个brew安装所有的软件，毋庸置疑，也都是基于x86架构的，可以通过Rosetta 2在M1 silicon上常运行。</li>
+</ul>
+
+<p>安装方法如下：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">arch</span> <span class="nt">-x86_64</span> /bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>第二种：</strong> 通过自行安装，运行M1架构的原生Homebrew</li>
+</ul>
+
+<p>安装方法如下：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">##首先创建安装目录</span>
+<span class="nb">sudo mkdir</span> <span class="nt">-p</span> /opt/homebrew
+
+<span class="c">##将目录属主修改为当前用户，方便以后用当前用户直接brew install软件</span>
+<span class="nb">sudo chown</span> <span class="nt">-R</span> <span class="si">$(</span><span class="nb">whoami</span><span class="si">)</span> /opt/homebrew
+
+<span class="c">## 进入到/opt下</span>
+<span class="nb">cd</span> /opt
+
+<span class="c">##直接下载homebrew tar包并解压</span>
+curl <span class="nt">-L</span> https://github.com/Homebrew/brew/tarball/master | <span class="nb">tar </span>xz <span class="nt">--strip</span> 1 <span class="nt">-C</span> homebrew
+
+<span class="c">##将路径增加到PATH环境变量中</span>
+如果使用的是zsh则直接修改~/.zshrc，如果使用的是bash，则修改~/.bash_profile，我的例子中修改.zshrc
+<span class="nb">echo</span> <span class="s2">"export PATH=/opt/homebrew/bin:</span><span class="nv">$PATH</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+
+<span class="c">##新开一个Terminal窗口或者在当前窗口让环境变量生效</span>
+<span class="nb">source</span> ~/.zshrc
+
+<span class="c">##现在可以安装软件了，注意要使用-s选项，表示编译源码安装</span>
+brew <span class="nb">install</span> <span class="nt">-s</span> wget
+</code></pre></div></div>
+<hr />
+
+<h1 id="jekyll-安装测试"><a href="https://jekyllrb.com/docs/installation/macos/">jekyll 安装测试</a></h1>
+
+<ul>
+  <li>安装CTL(command line tools)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xcode-select <span class="nt">--install</span>
+</code></pre></div></div>
+
+<ul>
+  <li>安装Ruby</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install Ruby -s选项表示源码编译</span>
+brew <span class="nb">install</span> <span class="nt">-s</span> ruby
+</code></pre></div></div>
+
+<ul>
+  <li>将ruby加入到环境变量中</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># If you're using Zsh</span>
+<span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/ruby/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+
+<span class="c"># If you're using Bash</span>
+<span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/ruby/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bash_profile
+
+<span class="c"># Unsure which shell you are using? Type</span>
+<span class="nb">echo</span> <span class="nv">$SHELL</span>
+</code></pre></div></div>
+
+<ul>
+  <li>安装jekyll (local install)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install</span> <span class="nt">--user-install</span> bundler jekyll
+</code></pre></div></div>
+
+:ET

@@ -1,4 +1,4 @@
-I"ˁ<!--
+I"�<!--
  >Theory and Computational Biology: From Molecular to System
 -->
 <!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
@@ -571,6 +571,6 @@ $            -q FITTED_CHG.1st.chg (1st fitted chg data)
 <p>[3] Junmei Wang*, Piotr Cieplak, Ray Luo, and Yong Duan*. <a href="https://pubs.acs.org/doi/abs/10.1021/acs.jctc.8b00603?casa_token=hzcpqUV1swgAAAAA:q_uwP4QZEup2RsmEgMMhHdRf0igZ8bSEm7-mcfaEAWlLjKDyIZ8UM0jZDpKoNXahsN0iklXs5OCt_aAS">Development of Polarizable Gaussian Model for Molecular Mechanical Calculations I: Atomic Polarizability Parameterization To Reproduce ab Initio Anisotropy.</a> <em>J. Chem. Theory Comput.</em> <strong>2019</strong>, 15, 2, 1146–1158</p>
 
 <div id="refer-anchor-4"></div>
-<p>[4] Qiang Zhu, Yongxian Wu, Shiji Zhao, Piotr Cieplak, Yong Duan,* Ray Luo.* <strong>2023</strong> (To be submitted)</p>
+<p>[4] Qiang Zhu, Yongxian Wu, Shiji Zhao, Piotr Cieplak, Yong Duan,* Ray Luo.* <em>J. Chem. Theory Comput.</em> <strong>2023</strong> DOI: https://doi.org/10.1021/acs.jctc.3c00659</p>
 
 :ET

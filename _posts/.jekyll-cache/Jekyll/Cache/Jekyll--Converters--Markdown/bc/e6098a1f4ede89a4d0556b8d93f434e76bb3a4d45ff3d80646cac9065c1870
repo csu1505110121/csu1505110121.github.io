@@ -1,0 +1,166 @@
+I"8(<!--
+ >Theory and Computational Biology: From Molecular to System
+-->
+<!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
+> <p align="right">-- Forty Braver </p>
+-->
+
+<blockquote>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>昨夜山河齐恸震，今朝双星辞九州！两位国士一路走好!   成功的背后，知识、汗水、灵感、机遇缺一不可！！！
+</code></pre></div>  </div>
+</blockquote>
+
+<p><strong><em>本教程在<code class="language-plaintext highlighter-rouge">centos 7.3</code>亲测有效，对于其他发行版本的Linux，该思路流程同样适用！！！</em></strong></p>
+
+<h2 id="先前准备工作">先前准备工作</h2>
+
+<ul>
+  <li>查看当前服务器的系统版本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">cat</span> /etc/redhat-release <span class="o">(</span>发行版本<span class="o">)</span>
+<span class="o">[</span>output]:
+CentOS Linux release 7.3.1611 <span class="o">(</span>Core<span class="o">)</span>
+or
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">uname</span> <span class="nt">-a</span> <span class="o">(</span>查看详细信息<span class="o">)</span>
+<span class="o">[</span>output]:
+Linux gpu01 3.10.0-514.el7.x86_64 <span class="c">#1 SMP Tue Nov 22 16:42:41 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">uname</span> <span class="nt">-r</span> <span class="o">(</span>查看内核<span class="o">)</span>
+<span class="o">[</span>output]:
+3.10.0-514.el7.x86_64
+</code></pre></div></div>
+
+<ul>
+  <li>CUDA的安装</li>
+</ul>
+
+<p>CUDA的下载链接：<a href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a></p>
+<div align="center">
+<img src="/assets/amber20/cuda.png" width="800" alt="cuda" />
+ </div>
+
+<p>选择对应的版本号(Linux -&gt; x86_64 -&gt; CentOS -&gt; 7 -&gt; runfile[local])</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> wget https://developer.download.nvidia.com/compute/cuda/11.3.1/local_installers/cuda_11.3.1_465.19.01_linux.run
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sudo </span>sh cuda_11.3.1_465.19.01_linux.run
+</code></pre></div></div>
+
+<p>如果遇到如下问题（没有关掉图形界面）</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: You appear to be running an X server<span class="p">;</span> please <span class="nb">exit </span>X before            
+         installing.  For further details, please see the section INSTALLING   
+         THE NVIDIA DRIVER <span class="k">in </span>the README available on the Linux driver         
+         download page at www.nvidia.com.
+</code></pre></div></div>
+<p>解决方案：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> init 3
+</code></pre></div></div>
+
+<p>如果遇到错误(kernel不匹配)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Installing the NVIDIA display driver…
+The driver installation is unable to locate the kernel source. Please make sure that the kernel <span class="nb">source </span>packages are installed and <span class="nb">set </span>up correctly.
+If you know that the kernel <span class="nb">source </span>packages are installed and <span class="nb">set </span>up correctly, you may pass the location of the kernel <span class="nb">source </span>with the ‘–kernel-source-path’ flag.
+</code></pre></div></div>
+<p>解决方案：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">sudo </span>sh cuda_11.3.1_465.19.01_linux.run <span class="nt">--kernel-source-path</span><span class="o">=</span>/usr/src/kernels/3.10.0-514.2.2.el7.x86_64 <span class="o">(</span>这边手动指定上述查看到的内核版本<span class="o">)</span>
+</code></pre></div></div>
+<p>如果安装成功了输入nvidia-smi会显示如下界面</p>
+<div align="center">
+<img src="/assets/amber20/nvidia.png" width="800" alt="nvidia" />
+ </div>
+
+<ul>
+  <li>GCC更新</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 先查看当前的gcc版本：(我当前gcc的版本是4.8.5，我在下面将gcc更新到了7.3，不然后续的安装amber20会报错)</span>
+<span class="o">&gt;&gt;&gt;</span> gcc <span class="nt">--version</span>
+<span class="o">[</span>output]:
+gcc <span class="o">(</span>GCC<span class="o">)</span> 4.8.5 20150623 <span class="o">(</span>Red Hat 4.8.5-44<span class="o">)</span>
+Copyright <span class="o">(</span>C<span class="o">)</span> 2015 Free Software Foundation, Inc.
+This is free software<span class="p">;</span> see the <span class="nb">source </span><span class="k">for </span>copying conditions.  There is NO
+warranty<span class="p">;</span> not even <span class="k">for </span>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</code></pre></div></div>
+<p>有两种方案进行gcc更新：</p>
+<ol>
+  <li>下载gcc源码，自行进行编译</li>
+  <li>参考这篇<a href="https://linuxize.com/post/how-to-install-gcc-compiler-on-centos-7/">blog</a>亲测可行</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">sudo </span>yum <span class="nb">install </span>centos-release-scl
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sudo </span>yum <span class="nb">install </span>devtoolset-7
+<span class="o">&gt;&gt;&gt;</span> scl <span class="nb">enable </span>devtoolset-7 bash
+<span class="o">&gt;&gt;&gt;</span> gcc <span class="nt">--version</span>
+<span class="o">[</span>output]:
+gcc <span class="o">(</span>GCC<span class="o">)</span> 7.3.1 20180303 <span class="o">(</span>Red Hat 7.3.1-5<span class="o">)</span>
+Copyright <span class="o">(</span>C<span class="o">)</span> 2017 Free Software Foundation, Inc.
+This is free software<span class="p">;</span> see the <span class="nb">source </span><span class="k">for </span>copying conditions.  There is NO
+warranty<span class="p">;</span> not even <span class="k">for </span>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</code></pre></div></div>
+
+<ul>
+  <li>cmake的安装</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 首先是移除现有的cmake</span>
+<span class="o">&gt;&gt;&gt;</span> yum remove cmake <span class="nt">-y</span>
+<span class="c"># 下载3.20版本的源码</span>
+<span class="o">&gt;&gt;&gt;</span> wget https://github.com/Kitware/CMake/releases/download/v3.20.2/cmake-3.20.2.tar.gz
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">tar</span> <span class="nt">-xvf</span> cmake-3.20.2.tar.gz
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">cd </span>cmake-3.20.2
+<span class="o">&gt;&gt;&gt;</span> ./bootstrap <span class="nt">--prefix</span><span class="o">=</span>/usr/local
+<span class="o">&gt;&gt;&gt;</span> make <span class="nt">-j</span> 4 
+<span class="c"># -j cpunum 只是为了加快速度</span>
+<span class="o">&gt;&gt;&gt;</span> make <span class="nt">-j</span> 4 <span class="nb">install</span>
+<span class="c"># 将可执行程序写入环境变量</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/usr/local/bin:<span class="nv">$PATH</span>
+</code></pre></div></div>
+
+<h2 id="amber20和ambertools21的下载和版权的购买">AMBER20和AmberTools21的下载和版权的购买！</h2>
+
+<ul>
+  <li>解压安装包</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">tar </span>xvfj AmberTools21.tar.bz2
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">tar </span>xvfj Amber20.tar.bz2
+</code></pre></div></div>
+
+<ul>
+  <li>安装serial版本的</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">cd </span>amber20_src/build
+<span class="o">&gt;&gt;&gt;</span> ./run_cmake
+<span class="o">&gt;&gt;&gt;</span> make <span class="nt">-j</span> 4 <span class="nb">install</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">source</span> /home/xxxx/amber20/amber.sh
+</code></pre></div></div>
+
+<ul>
+  <li>安装MPI版本的</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">cd </span>AmberTools/src
+<span class="o">&gt;&gt;&gt;</span> wget http://www.mpich.org/static/downloads/3.3.2/mpich-3.3.2.tar.gz
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">tar </span>xvzf mpich-3.3.2.tar.gz
+<span class="o">&gt;&gt;&gt;</span> ./configure_mpich gnu
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">cd</span> ../../build
+<span class="c"># 修改run_cmake 文件中个选项： 将-DMPI=FALSE改为-DMPI=TRUE</span>
+<span class="o">&gt;&gt;&gt;</span> ./run_cmake
+<span class="o">&gt;&gt;&gt;</span> make <span class="nt">-j</span> 4 <span class="nb">install</span>
+</code></pre></div></div>
+
+<ul>
+  <li>安装GPU版本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">export </span><span class="nv">CUDA_HOME</span><span class="o">=</span>/usr/local/cuda
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">cd</span> <span class="nv">$AMBERHOME</span>/build
+<span class="c"># 编辑run_cmake文件中的选项： 将-DCUDA=FALSE 改为-DCUDA=TRUE</span>
+<span class="o">&gt;&gt;&gt;</span> ./run_cmake
+<span class="o">&gt;&gt;&gt;</span> make <span class="nt">-j</span> 4 <span class="nb">install</span>
+</code></pre></div></div>
+
+:ET

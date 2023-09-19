@@ -1,0 +1,38 @@
+I"V<!--
+ >Theory and Computational Biology: From Molecular to System
+-->
+<!-- > 当你打开我这个网页时，恭喜你，你离毕业不远了，撸起袖子加油干啊，奥利给！  
+> <p align="right">-- Forty Braver </p>
+-->
+<p>最近组里面的师弟师妹们爱上了使用linux，那linux下的一些科研软件的安装并不像window上安装那么方便。例如一些常用的量化软件，Gaussian和gaussian view。在这篇blog中我就简单介绍下gaussian和gaussian view如何在linux下安装并使用，虽然本教程是在ubuntu 15.10下进行的，但是在centos版本的linux下也同样适用。</p>
+
+<h1 id="step-1-安装包的解压缩">Step 1. 安装包的解压缩</h1>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 解压缩gaussian view的压缩包</span>
+<span class="nb">tar</span> <span class="nt">-xvf</span> GaussView<span class="se">\ </span>4.1.2_Linux_x86.tar.gz
+<span class="c"># 得到的目录文件是gv</span>
+
+<span class="c"># 解压缩gaussian对应的压缩包</span>
+<span class="nb">tar</span> <span class="nt">-xvf</span> Gaussian.tbz
+<span class="c"># 得到的目录文件是g09</span>
+</code></pre></div></div>
+
+<h1 id="step-2-gaussian环境变量的设置">Step 2. Gaussian环境变量的设置</h1>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 设置gaussian的环境变量</span>
+<span class="nb">export </span><span class="nv">g09root</span><span class="o">=</span>/home/username  <span class="c"># username就是你机器的名字</span>
+<span class="nb">export </span><span class="nv">GAUSS_SCRDIR</span><span class="o">=</span>/tmp       <span class="c"># /tmp是根目录下的一个文件夹，安装系统的时候都会有，一般用来做临时文件，也可以任意指定，但是注意要有读写的权限</span>
+<span class="nb">source</span> /home/username/g09/bsd/g09.profile
+</code></pre></div></div>
+
+<h1 id="step-3-gaussian-view环境变量的设置">Step 3. Gaussian View环境变量的设置</h1>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 设置gaussian view的环境变量</span>
+<span class="nb">export </span><span class="nv">GV_DIR</span><span class="o">=</span><span class="s1">'/home/username/gv'</span> <span class="c"># /home/usename/gv 是你step 1中Gaussian view压缩得到的文件的位置</span>
+<span class="nb">alias </span><span class="nv">gv</span><span class="o">=</span><span class="nv">$GV_DIR</span><span class="s1">'/gview'</span>          <span class="c"># 设置gaussian view命令行唤醒的别名，可以是gv也可以是gview看你个人习惯</span>
+<span class="nb">alias </span><span class="nv">gview</span><span class="o">=</span><span class="nv">$GV_DIR</span><span class="s1">'/gview'</span>        
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$GV_DIR</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+</code></pre></div></div>
+
+<p>All Done !!!</p>
+
+:ET

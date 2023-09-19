@@ -1,0 +1,31 @@
+I"�
+<p>打开网络转发机制</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">"1"</span> <span class="o">&gt;</span> /proc/sys/net/ipv4/ip_forward</code></pre></figure>
+
+<p>按照常规的设置将集群设置成一个主节点和若干节点</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">主节点ip：xxx.xxx.xxx.xxx （动态）
+节点ip：192.168.xxx.xxx <span class="o">(</span>静态<span class="o">)</span></code></pre></figure>
+
+<p>设置iptables转发机制</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#main_node=xxx.xxx.xxx.xxx(主节点动态ip)</span>
+<span class="c">#PORT 目标节点的端口号，人为指定</span>
+<span class="c">#192.168.xxx.xxx 目标节点的静态ip</span>
+<span class="c">#-o eno1 目标机器的网卡名</span>
+<span class="c">#-i eno1 目标机器的网卡名</span>
+iptables <span class="nt">-F</span>
+iptables <span class="nt">-X</span>
+
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> PREROUTING <span class="nt">-d</span> <span class="k">${</span><span class="nv">main_node</span><span class="k">}</span> <span class="nt">-p</span> tcp <span class="nt">--dport</span> <span class="k">${</span><span class="nv">PORT</span><span class="k">}</span><span class="o">(</span>you specified<span class="o">)</span> <span class="nt">-j</span> DNAT <span class="nt">--to-dest</span> 192.168.xxx.xxx:22 <span class="o">(</span>the static ip of the node<span class="o">)</span>
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> POSTROUTING <span class="nt">-d</span> 192.168.xxx.xxx <span class="nt">-p</span> tcp <span class="nt">--dport</span> 22 <span class="nt">-j</span> SNAT <span class="nt">--to</span> 192.168.120.1<span class="o">(</span>static ip of the main node<span class="o">)</span>
+iptables <span class="nt">-A</span> FORWARD <span class="nt">-o</span> eno1 <span class="nt">-d</span> 192.168.xxx.xxx <span class="nt">-p</span> tcp <span class="nt">--dport</span> 22 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> FORWARD <span class="nt">-i</span> eno1 <span class="nt">-d</span> 192.168.xxx.xxx <span class="nt">-p</span> tcp <span class="nt">--dport</span> 22 <span class="nt">-j</span> ACCEPT</code></pre></figure>
+
+<p>至此，一个集群就已经搭建完毕，如果想登陆端口号为100的机器可以通过如下命令进行登陆</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ssh <span class="nt">-p</span> 100 username@main_node<span class="o">(</span>主节点ip<span class="o">)</span></code></pre></figure>
+
+<p><strong><em>特别鸣谢 Dr. Xiaoyu Xie and Zhen Luo.</em></strong></p>
+:ET
