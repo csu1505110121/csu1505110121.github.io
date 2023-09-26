@@ -565,13 +565,13 @@ $            -q FITTED_CHG.1st.chg (1st fitted chg data)
 [1] Qiang Zhu, Yang Ge, Wei Li,\* and Jing Ma\*. [Treating Polarization Effects in Charged and Polar Bio-Molecules Through Variable Electrostatic Parameters.](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.2c01130?casa_token=eu4gzasL3FgAAAAA:9WLmHUtsPjEvRSd4qAFw76UMxVgQdXr2MDYXNv0nnQsa929qSeTpTXxNlTssMeDPgFbtCvYrKbhtLnr1) *J. Chem. Theory Comput.* **2023**, 19, 2, 396–411; 
 
 <div id='refer-anchor-2'></div>
-[2] Shiji Zhao, Haixin Wei, Piotr Cieplak, Yong Duan,\* and Ray Luo.\* [PyRESP: A Program for Electrostatic Parameterizations of Additive and Induced Dipole Polarizable Force Fields.](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.2c00230?casa_token=ztCXn3gxZjgAAAAA:OXdVwLy-DwjKzCY2-62X302bHkTPHO5LqnZnSZfjSY5k2X_aCJScTlgynnnfSYbf-_ynAK9rHud0aFXj) *J. Chem. Theory Comput.* **2022**, 18, 6, 3654–3670
+[2] Shiji Zhao, Haixin Wei, Piotr Cieplak, Yong Duan,\* and Ray Luo.\* [PyRESP: A Program for Electrostatic Parameterizations of Additive and Induced Dipole Polarizable Force Fields.](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.2c00230?casa_token=ztCXn3gxZjgAAAAA:OXdVwLy-DwjKzCY2-62X302bHkTPHO5LqnZnSZfjSY5k2X_aCJScTlgynnnfSYbf-_ynAK9rHud0aFXj) *J. Chem. Theory Comput.* **2022**, 18, 6, 3654–3670;
 
 <div id='refer-anchor-3'></div>
-[3] Junmei Wang\*, Piotr Cieplak, Ray Luo, and Yong Duan\*. [Development of Polarizable Gaussian Model for Molecular Mechanical Calculations I: Atomic Polarizability Parameterization To Reproduce ab Initio Anisotropy.](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.8b00603?casa_token=hzcpqUV1swgAAAAA:q_uwP4QZEup2RsmEgMMhHdRf0igZ8bSEm7-mcfaEAWlLjKDyIZ8UM0jZDpKoNXahsN0iklXs5OCt_aAS) *J. Chem. Theory Comput.* **2019**, 15, 2, 1146–1158
+[3] Junmei Wang\*, Piotr Cieplak, Ray Luo, and Yong Duan\*. [Development of Polarizable Gaussian Model for Molecular Mechanical Calculations I: Atomic Polarizability Parameterization To Reproduce ab Initio Anisotropy.](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.8b00603?casa_token=hzcpqUV1swgAAAAA:q_uwP4QZEup2RsmEgMMhHdRf0igZ8bSEm7-mcfaEAWlLjKDyIZ8UM0jZDpKoNXahsN0iklXs5OCt_aAS) *J. Chem. Theory Comput.* **2019**, 15, 2, 1146–1158;
 
 <div id='refer-anchor-4'></div>
-[4] Qiang Zhu, Yongxian Wu, Shiji Zhao, Piotr Cieplak, Yong Duan,\* Ray Luo.\* *J. Chem. Theory Comput.* **2023** DOI: https://doi.org/10.1021/acs.jctc.3c00659
+[4] Qiang Zhu, Yongxian Wu, Shiji Zhao, Piotr Cieplak, Yong Duan,\* Ray Luo.\* *J. Chem. Theory Comput.* **2023**, 19,18, 6353-6365.
 
 
 
