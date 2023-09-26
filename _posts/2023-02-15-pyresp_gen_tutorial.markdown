@@ -571,7 +571,7 @@ $            -q FITTED_CHG.1st.chg (1st fitted chg data)
 [3] Junmei Wang\*, Piotr Cieplak, Ray Luo, and Yong Duan\*. [Development of Polarizable Gaussian Model for Molecular Mechanical Calculations I: Atomic Polarizability Parameterization To Reproduce ab Initio Anisotropy.](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.8b00603?casa_token=hzcpqUV1swgAAAAA:q_uwP4QZEup2RsmEgMMhHdRf0igZ8bSEm7-mcfaEAWlLjKDyIZ8UM0jZDpKoNXahsN0iklXs5OCt_aAS) *J. Chem. Theory Comput.* **2019**, 15, 2, 1146–1158;
 
 <div id='refer-anchor-4'></div>
-[4] Qiang Zhu, Yongxian Wu, Shiji Zhao, Piotr Cieplak, Yong Duan,\* Ray Luo.\* *J. Chem. Theory Comput.* **2023**, 19,18, 6353-6365.
+[4] Qiang Zhu, Yongxian Wu, Shiji Zhao, Piotr Cieplak, Yong Duan,\* Ray Luo.\* [Streamlining and Optimizing Strategies of Electrostatic Parameterization](https://pubs.acs.org/doi/full/10.1021/acs.jctc.3c00659) *J. Chem. Theory Comput.* **2023**, 19,18, 6353-6365.
 
 
 
